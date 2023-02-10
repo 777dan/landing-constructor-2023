@@ -22,19 +22,22 @@ class Controller
             $header = new Header($_POST['header']);
             $blocks[] = $header;
         }
+        $logo = $_FILES['file'];
+        $tmp_logo = $logo['tmp_name'];
+        move_uploaded_file($tmp_logo, "../model/images/logo.png");
+
         if ($_POST['text']) {
             $text = new Text($_POST['text']);
             $blocks[] = $text;
         }
-        $logo = $_FILES['file'];
-        $tmp_logo = $logo['tmp_name'];
-        move_uploaded_file($tmp_logo, "../model/images/logo.png");
-        for ($i = 0; $i <= $_COOKIE['user']; $i++) {
+
+        for ($i = 0; $i < $_COOKIE['user']; $i++) {
             if ($_POST["form" . $i + 1]) {
-                $form[] = new Form($_POST["form" . $i + 1]);
-                $blocks[] = $form[$i];
+                $nameSelect = "selectType" . ($i + 1);
+                $form[] = new Form($_POST["form" . $i + 1], $_POST[$nameSelect]);
             }
         }
+        $blocks[] = $form;
 
         if ($_POST['footer']) {
             $footer = new Footer($_POST['footer']);

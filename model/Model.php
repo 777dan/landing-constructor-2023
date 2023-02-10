@@ -38,10 +38,8 @@ class Model
         for ($i = 0; $i < count($this->blocks); $i++) {
             if (gettype($this->blocks[$i]) == "array") {
                 $content .= $this->blocks[$i][0]->drawStart();
-                for ($j = 0; $j < count($this->blocks[$i]); $j++) {
-                    $nameSelect = "selectType" . ($j + 1);
-                    // echo $_POST[$nameSelect];
-                    $content .= $this->blocks[$i][$j]->drawInput($_POST[$nameSelect]);
+                for ($j = 0; $j < $_COOKIE['user']; $j++) {
+                    $content .= $this->blocks[$i][$j]->draw();
                 }
                 $content .= $this->blocks[$i][0]->drawEnd();
             } else {

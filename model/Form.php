@@ -3,27 +3,22 @@
 class Form extends Block
 {
     private $inputs = array();
+    private $type;
 
     public function getName()
     {
         return $this->inputs;
     }
-    public function __construct($inputs)
+    public function __construct($inputs, $type)
     {
         $this->inputs = $inputs;
+        $this->type = $type;
     }
     public function drawStart()
     {
         $str = <<<EOD
      <!-------------Блок "Form"-------------------------->
     <form>
-EOD;
-        return $str;
-    }
-    public function drawInput($type)
-    {
-        $str = <<<EOD
-    <input type="{$type}" value='{$this->inputs}'/>
 EOD;
         return $str;
     }
@@ -38,7 +33,7 @@ EOD;
     public function draw()
     {
         $str = <<<EOD
-    <input type="text" value='{$this->inputs}'/>
+    <input type="{$this->type}" value='{$this->inputs}'/>
 EOD;
         return $str;
     }
