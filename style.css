@@ -1,0 +1,12 @@
+::-webkit-input-placeholder {
+    color:    #8bc34a;
+}
+
+input {
+    width: 300px;
+}
+
+select {
+    width: 10%;
+    display: inline;
+}
