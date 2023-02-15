@@ -37,13 +37,13 @@ class Model
         $content = "";
         for ($i = 0; $i < count($this->blocks); $i++) {
             if (gettype($this->blocks[$i]) == "array") {
-                // if ($this->blocks[$i][0]->checkType() == "Form") {
-                //     $content .= $this->blocks[$i][0]->drawStart();
-                //     for ($j = 0; $j < $_COOKIE['inputsForFormLength']; $j++) {
-                //         $content .= $this->blocks[$i][$j]->draw();
-                //     }
-                //     $content .= $this->blocks[$i][0]->drawEnd();
-                // }
+                if ($this->blocks[$i][0]->checkType() == "Form") {
+                    $content .= $this->blocks[$i][0]->drawStart();
+                    for ($j = 0; $j < $_COOKIE['inputsForFormLength']; $j++) {
+                        $content .= $this->blocks[$i][$j]->draw();
+                    }
+                    $content .= $this->blocks[$i][0]->drawEnd();
+                }
                 if ($this->blocks[$i][0]->checkType() == "Slider") {
                     $content .= $this->blocks[$i][0]->drawStart();
                     for ($j = 0; $j < $_COOKIE['inputsForSliderLength']; $j++) {

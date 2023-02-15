@@ -52,21 +52,21 @@ class Controller
                 $tmp_slider_element = $slider_element['tmp_name'];
                 move_uploaded_file($tmp_slider_element, $dir . "slider-element" . $i + 1 . ".png");
             }
-        }
 
-        $count = 0;
-        $slider_elements = array();
-        if (is_dir($dir)) {
-            if ($dh = opendir($dir)) {
-                while (($file = readdir($dh)) !== false) {
-                    if (preg_match_all("#slider-element\d*\.png#", $file)) {
-                        $count++;
-                        $slider_elements[] = new Slider($dir . $file);
+            $count = 0;
+            $slider_elements = array();
+            if (is_dir($dir)) {
+                if ($dh = opendir($dir)) {
+                    while (($file = readdir($dh)) !== false) {
+                        if (preg_match_all("#slider-element\d*\.png#", $file)) {
+                            $count++;
+                            $slider_elements[] = new Slider($dir . $file);
+                        }
                     }
+                    $blocks[] = $slider_elements;
                 }
-                $blocks[] = $slider_elements;
+                closedir($dh);
             }
-            closedir($dh);
         }
 
 
