@@ -12,7 +12,6 @@ $dir = "landing";
 // fwrite($f, $str_land); // запис в файл коду лендинга
 // fclose($f);
 // echo "Лендинг успішно створено!";
-phpinfo();
 $zip = new ZipArchive(); // Створюємо об'єкт для роботи із ZIP-архівами
 $arch = "landing.zip";
 $zip->open($arch, ZIPARCHIVE::CREATE);

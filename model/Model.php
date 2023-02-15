@@ -37,11 +37,20 @@ class Model
         $content = "";
         for ($i = 0; $i < count($this->blocks); $i++) {
             if (gettype($this->blocks[$i]) == "array") {
-                $content .= $this->blocks[$i][0]->drawStart();
-                for ($j = 0; $j < $_COOKIE['user']; $j++) {
-                    $content .= $this->blocks[$i][$j]->draw();
+                // if ($this->blocks[$i][0]->checkType() == "Form") {
+                //     $content .= $this->blocks[$i][0]->drawStart();
+                //     for ($j = 0; $j < $_COOKIE['inputsForFormLength']; $j++) {
+                //         $content .= $this->blocks[$i][$j]->draw();
+                //     }
+                //     $content .= $this->blocks[$i][0]->drawEnd();
+                // }
+                if ($this->blocks[$i][0]->checkType() == "Slider") {
+                    $content .= $this->blocks[$i][0]->drawStart();
+                    for ($j = 0; $j < $_COOKIE['inputsForSliderLength']; $j++) {
+                        $content .= $this->blocks[$i][$j]->draw();
+                    }
+                    $content .= $this->blocks[$i][0]->drawEnd();
                 }
-                $content .= $this->blocks[$i][0]->drawEnd();
             } else {
                 $content .= $this->blocks[$i]->draw();
             }
@@ -52,9 +61,13 @@ class Model
     <head>
         <meta charset="UTF-8">
         <title>{$this->name}</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="../carousel/carousel.css">
     </head>
     <body style='background:{$_POST['color']};'>
         {$content}
+        <script src="../carousel/carousel.js"></script>
     </body>
 </html>
 EOD;

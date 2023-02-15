@@ -1,12 +1,13 @@
-const button = document.getElementById("addNewInput");
-button.addEventListener("click", addInput);
+//создание input для создания формы
+const addNewInputForForm = document.getElementById("addNewInput");
+addNewInputForForm.addEventListener("click", addInputsForForm);
 let selectTypeArr = [];
 let smallFormsArr = [];
 
-
-function addInput() {
+function addInputsForForm() {
     const parent = document.getElementById("inputs");
     const select = document.createElement("select");
+    const input = document.createElement("input");
     let selectName = `selectType${selectTypeArr.length + 1}`;
     selectTypeArr.push(selectName)
     select.name = selectName;
@@ -14,7 +15,6 @@ function addInput() {
     option1.value = 'submit';
     const option2 = document.createElement("option");
     option2.value = 'text';
-    const input = document.createElement("input");
     input.type = 'input';
     let formName = `form${smallFormsArr.length + 1}`;
     smallFormsArr.push(formName);
@@ -31,9 +31,5 @@ function addInput() {
     option2.innerHTML = "Поле ввода";
     parent.appendChild(input);
     parent.appendChild(br);
-    parent.appendChild(br);
-    document.cookie = `user=${smallFormsArr.length}`;
+    document.cookie = `inputsForFormLength=${smallFormsArr.length}`;
 }
-
-// document.cookie = `form=${formName}`;
-// console.log(smallFormsArr);

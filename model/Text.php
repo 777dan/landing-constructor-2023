@@ -19,4 +19,8 @@ class Text extends Block
 EOD;
         return $str;
     }
+
+    public function checkType() {
+        return "Test";
+    }
 }

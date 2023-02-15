@@ -8,4 +8,5 @@ abstract class Block
         $this->name = $name;
     }
     abstract public function draw();
+    abstract public function checkType();
 }

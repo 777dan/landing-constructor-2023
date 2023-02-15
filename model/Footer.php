@@ -21,4 +21,8 @@ class Footer extends Block
 EOD;
         return $str;
     }
+
+    public function checkType() {
+        return "Footer";
+    }
 }

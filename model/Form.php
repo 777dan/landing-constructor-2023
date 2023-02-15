@@ -37,4 +37,7 @@ EOD;
 EOD;
         return $str;
     }
+    public function checkType() {
+        return "Form";
+    }
 }

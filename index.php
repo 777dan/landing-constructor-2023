@@ -1,3 +1,10 @@
+<?php
+setcookie("inputsForFormLength");
+setcookie("inputsForSliderLength");
+// if (isset($_COOKIE['inputsForSliderLength'])) {
+//     setcookie("Yes", "Ya");
+// }
+?>
 <!DOCTYPE html>
 <html>
 
@@ -26,6 +33,21 @@
                 <input type="input" name="header" value="" placeholder="Введите заголовок страницы" class="design light-green lighten-5" />
                 <h5>Картинка для заголовка</h5>
                 <input type="file" name="file" value="" class="design light-green lighten-5" />
+                <h5>Выравнивание заголовка</h5>
+                <label>
+                    <input type="radio" name="alignHeader" value="center">
+                    По центру
+                </label>
+                <br>
+                <label>
+                    <input type="radio" checked name="alignHeader" value="left">
+                    По левому краю
+                </label>
+                <br>
+                <label>
+                    <input type="radio" name="alignHeader" value="right">
+                    По правому краю
+                </label>
             </div>
             <div class="divider light-green darken-1"></div>
             <div class="section">
@@ -38,6 +60,13 @@
                 <div id="inputs">
                 </div><br>
                 <input type="button" id="addNewInput" value="+" />
+            </div>
+            <div class="divider light-green darken-1"></div>
+            <div class="section">
+                <h3>Слайдер (карусель)</h3>
+                <div id="slider_elements">
+                </div><br>
+                <input type="button" id="addNewSlider_elements" value="+" />
             </div>
             <div class="divider light-green darken-1"></div>
             <div class="section">
@@ -64,7 +93,8 @@
             <iframe width="800" height="400" src="landing/mini.html"></iframe>
         </div>
     </div>
-    <script src="create_inputs.js"></script>
+    <script src="./inputs_creating/inputs-creating-for-form.js"></script>
+    <script src="./inputs_creating/inputs-creating-for-carousel.js"></script>
 </body>
 
 </html>

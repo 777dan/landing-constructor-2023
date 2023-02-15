@@ -10,3 +10,14 @@ select {
     width: 10%;
     display: inline;
 }
+
+input[type="radio"] {
+    position: relative !important;
+    width: 2em;
+    opacity: 1 !important;
+}
+
+label {
+    font-size: 15px;
+    color: black;
+}
