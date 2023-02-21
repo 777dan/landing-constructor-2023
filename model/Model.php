@@ -53,6 +53,10 @@ class Model
                 }
             } else {
                 $content .= $this->blocks[$i]->draw();
+                if ($this->blocks[$i]->checkType() == "Header") {
+                    if (file_exists('../landing/images/logo/logo.png')) $content .= $this->blocks[$i]->drawHeaderImg();
+                    $content .= $this->blocks[$i]->drawEnd();
+                }
             }
         }
         return $template = <<<EOD
@@ -67,7 +71,6 @@ class Model
     </head>
     <body style='background:{$_POST['color']};'>
         {$content}
-        <script src="../carousel/carousel.js"></script>
     </body>
 </html>
 EOD;

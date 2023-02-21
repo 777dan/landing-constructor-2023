@@ -11,13 +11,18 @@ select {
     display: inline;
 }
 
-input[type="radio"] {
-    position: relative !important;
-    width: 2em;
-    opacity: 1 !important;
+[type="radio"]:checked+span:after {
+    background-color: #558b2f !important;
+    border: 2px solid #558b2f !important;
 }
+
 
 label {
     font-size: 15px;
     color: black;
+}
+
+#addNewInput, #addNewSlider_elements {
+    font-weight: 900;
+    font-size: 25px;
 }

@@ -19,19 +19,21 @@ class Controller
         ob_start();
         /* створення блоків */
         if ($_POST['header']) {
-            $header = new Header($_POST['header'], $_POST["alignHeader"]);
+            $header = new Header($_POST['header'], $_POST["alignHeader"], $_POST["header_background_color"], $_POST["header_color"]);
             $blocks[] = $header;
         }
-        $logo = $_FILES['file'];
+        $logoDir = '../landing/images/logo/';
+        if (file_exists($logoDir)) {
+            unlink($logoDir);
+        }
+        $logo = $_FILES['logo'];
         $tmp_logo = $logo['tmp_name'];
-        move_uploaded_file($tmp_logo, "../images/logo.png");
+        move_uploaded_file($tmp_logo, "../landing/images/logo/logo.png");
 
         if ($_POST['text']) {
-            $text = new Text($_POST['text']);
+            $text = new Text($_POST['text'], $_POST["alignText"], $_POST["text_background_color"], $_POST["text_color"]);
             $blocks[] = $text;
         }
-
-        // $inputsLength = explode(".", $_COOKIE['user']);
 
         if (isset($_COOKIE['inputsForFormLength'])) {
             $true_or_false = false;
@@ -45,22 +47,27 @@ class Controller
             if ($true_or_false == true) $blocks[] = $form;
         }
 
-        $dir = "../images/";
+        $sliderDir = '../landing/images/slider/';
+        if (file_exists($sliderDir)) {
+            foreach (glob($sliderDir . '*') as $file) {
+                unlink($file);
+            }
+        }
         if (isset($_COOKIE['inputsForSliderLength'])) {
             for ($i = 0; $i < $_COOKIE['inputsForSliderLength']; $i++) {
                 $slider_element = $_FILES['uploadImgForm' . $i + 1];
                 $tmp_slider_element = $slider_element['tmp_name'];
-                move_uploaded_file($tmp_slider_element, $dir . "slider-element" . $i + 1 . ".png");
+                move_uploaded_file($tmp_slider_element, $sliderDir . "slider-element" . $i + 1 . ".png");
             }
 
             $count = 0;
             $slider_elements = array();
-            if (is_dir($dir)) {
-                if ($dh = opendir($dir)) {
+            if (is_dir($sliderDir)) {
+                if ($dh = opendir($sliderDir)) {
                     while (($file = readdir($dh)) !== false) {
                         if (preg_match_all("#slider-element\d*\.png#", $file)) {
                             $count++;
-                            $slider_elements[] = new Slider($dir . $file);
+                            $slider_elements[] = new Slider($sliderDir . $file);
                         }
                     }
                     $blocks[] = $slider_elements;
@@ -71,10 +78,9 @@ class Controller
 
 
         if ($_POST['footer']) {
-            $footer = new Footer($_POST['footer']);
+            $footer = new Footer($_POST['footer'], $_POST["alignFooter"], $_POST["footer_background_color"], $_POST["footer_color"]);
             $blocks[] = $footer;
         }
-        print_r($blocks);
         /* створення модели */
         if ($_POST['title']) {
             $model = new Model($blocks, $_POST['title']);
@@ -97,3 +103,9 @@ class Controller
 
 $controller = new Controller('../landing');
 $controller->action();
+
+include "./create_archive.php";
+?>
+<div class="row center">
+    <iframe width="800" height="400" src="landing/mini.html"></iframe>
+</div>
