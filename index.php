@@ -137,7 +137,7 @@ setcookie("inputsForSliderLength");
             <h3>Результат</h3>
             <a href='landing/mini.html' class="design btn waves-effect waves-light light-green lighten-2 black-text" target="_blank">Посмотреть результат в новом окне</a>
             <a href="./landing.zip" class="design btn waves-effect waves-light light-green lighten-2 black-text" download>Скачать zip-архив файла</a>
-            <span class="reload design btn waves-effect waves-light light-green lighten-2 black-text">Обновить показ сайта в мини-коне</span>
+            <span class="reload design btn waves-effect waves-light light-green lighten-2 black-text">Обновить показ сайта в мини-окне</span>
         </div>
         <div class="row center">
             <iframe id="showPage" width="800" height="400" src="landing/mini.html"></iframe>

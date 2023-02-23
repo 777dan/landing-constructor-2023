@@ -28,12 +28,13 @@ EOD;
     public function draw()
     {
         $str = <<<EOD
-        <a class='carousel-item'><img class='slider_images' src='{$this->path}'></a>
+        <a class='carousel-item'><img class='slider_images' style='width:none;' src='{$this->path}'></a>
 EOD;
         return $str;
     }
 
-    public function checkType() {
+    public function checkType()
+    {
         return "Slider";
     }
 }

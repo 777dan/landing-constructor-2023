@@ -16,7 +16,7 @@ if (file_exists($logoDir)) {
     $zip->addFile($logoDir, "landing/images/logo/logo.png");
 }
 $files = scandir($sliderDir);
-if (count($files) !== 0) {
+if ($files !== false) {
     for ($i = 0; $i < count($files); $i++) {
         if ($files[$i] !== "." && $files[$i] !== "..")
             $zip->addFile($sliderDir . '/' . $files[$i], "landing/images/slider/" . $files[$i]);

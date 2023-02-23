@@ -26,7 +26,7 @@ class Header extends Block
     public function drawHeaderImg()
     {
         $str = <<<EOD
-        <img src='./images/logo/logo.png' style='width:100px;height:100px;'>
+        <img src='./images/logo/logo.png' style='width:100px;'>
         EOD;
         return $str;
     }

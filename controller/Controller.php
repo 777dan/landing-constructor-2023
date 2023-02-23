@@ -22,10 +22,37 @@ class Controller
             $header = new Header($_POST['header'], $_POST["alignHeader"], $_POST["header_background_color"], $_POST["header_color"]);
             $blocks[] = $header;
         }
-        $logoDir = '../landing/images/logo/';
-        if (file_exists($logoDir)) {
-            unlink($logoDir);
+
+        $imagesDir = "{$this->dir}/images";
+        $logoDir = '../landing/images/logo';
+        $sliderDir = '../landing/images/slider';
+        if (is_dir($imagesDir)) {
+            if (is_dir($logoDir)) {
+                if (file_exists("$logoDir/logo.png")) {
+                    unlink("$logoDir/logo.png");
+                    rmdir($logoDir);
+                }
+            }
+            if (is_dir($sliderDir)) {
+                if (is_dir($sliderDir)) {
+                    foreach (glob($sliderDir . '/*') as $file) {
+                        unlink($file);
+                    }
+                    rmdir($sliderDir);
+                }
+            }
+            rmdir($imagesDir);
         }
+        if ($_FILES['logo']['name'] != "" || isset($_COOKIE['inputsForSliderLength'])) {
+            mkdir($imagesDir);
+            if ($_FILES['logo']['name'] != "") {
+                mkdir($logoDir);
+            }
+            if (isset($_COOKIE['inputsForSliderLength'])) {
+                mkdir($sliderDir);
+            }
+        }
+
         $logo = $_FILES['logo'];
         $tmp_logo = $logo['tmp_name'];
         move_uploaded_file($tmp_logo, "../landing/images/logo/logo.png");
@@ -47,17 +74,11 @@ class Controller
             if ($true_or_false == true) $blocks[] = $form;
         }
 
-        $sliderDir = '../landing/images/slider/';
-        if (file_exists($sliderDir)) {
-            foreach (glob($sliderDir . '*') as $file) {
-                unlink($file);
-            }
-        }
         if (isset($_COOKIE['inputsForSliderLength'])) {
             for ($i = 0; $i < $_COOKIE['inputsForSliderLength']; $i++) {
                 $slider_element = $_FILES['uploadImgForm' . $i + 1];
                 $tmp_slider_element = $slider_element['tmp_name'];
-                move_uploaded_file($tmp_slider_element, $sliderDir . "slider-element" . $i + 1 . ".png");
+                move_uploaded_file($tmp_slider_element, $sliderDir . "/slider-element" . $i + 1 . ".png");
             }
 
             $count = 0;
@@ -67,7 +88,7 @@ class Controller
                     while (($file = readdir($dh)) !== false) {
                         if (preg_match_all("#slider-element\d*\.png#", $file)) {
                             $count++;
-                            $slider_elements[] = new Slider($sliderDir . $file);
+                            $slider_elements[] = new Slider("$sliderDir/$file");
                         }
                     }
                     $blocks[] = $slider_elements;
