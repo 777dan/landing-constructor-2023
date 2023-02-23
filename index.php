@@ -1,6 +1,7 @@
 <?php
 setcookie("inputsForFormLength");
 setcookie("inputsForSliderLength");
+setcookie("inputsForLinksLength");
 ?>
 <!DOCTYPE html>
 <html>
@@ -89,6 +90,13 @@ setcookie("inputsForSliderLength");
             </div>
             <div class="divider light-green darken-1"></div>
             <div class="section">
+                <h3>Ссылки</h3>
+                <div id="links">
+                </div><br>
+                <input type="button" class="design btn waves-effect waves-light light-green lighten-2" id="addNewLink" value="+" />
+            </div>
+            <div class="divider light-green darken-1"></div>
+            <div class="section">
                 <h3>Слайдер (карусель)</h3>
                 <div id="slider_elements">
                 </div><br>
@@ -162,6 +170,7 @@ setcookie("inputsForSliderLength");
     </footer>
     <script src="./inputs_creating/inputs-creating-for-form.js"></script>
     <script src="./inputs_creating/inputs-creating-for-carousel.js"></script>
+    <script src="./inputs_creating/inputs-creating-for-links.js"></script>
 </body>
 
 </html>

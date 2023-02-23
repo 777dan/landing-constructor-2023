@@ -74,6 +74,16 @@ class Controller
             if ($true_or_false == true) $blocks[] = $form;
         }
 
+        if (isset($_COOKIE['inputsForLinksLength'])) {
+            for ($i = 0; $i < $_COOKIE['inputsForLinksLength']; $i++) {
+                if ($_POST["linkName" . $i + 1]) {
+                    $hrefName = "hrefName" . ($i + 1);
+                    $links[] = new Link($_POST["linkName" . $i + 1], $_POST[$hrefName]);
+                }
+            }
+            $blocks[] = $links;
+        }
+
         if (isset($_COOKIE['inputsForSliderLength'])) {
             for ($i = 0; $i < $_COOKIE['inputsForSliderLength']; $i++) {
                 $slider_element = $_FILES['uploadImgForm' . $i + 1];
@@ -102,6 +112,7 @@ class Controller
             $footer = new Footer($_POST['footer'], $_POST["alignFooter"], $_POST["footer_background_color"], $_POST["footer_color"]);
             $blocks[] = $footer;
         }
+
         /* створення модели */
         if ($_POST['title']) {
             $model = new Model($blocks, $_POST['title']);

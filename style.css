@@ -22,7 +22,7 @@ label {
     color: black;
 }
 
-#addNewInput, #addNewSlider_elements {
+#addNewInput, #addNewSlider_elements, #addNewLink {
     font-weight: 900;
     font-size: 25px;
 }
