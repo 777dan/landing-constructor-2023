@@ -43,6 +43,12 @@ class Controller
             }
             rmdir($imagesDir);
         }
+        $pathOfCarouselJS = "{$this->dir}/carousel.js";
+        if (file_exists($pathOfCarouselJS)) {
+            unlink($pathOfCarouselJS);
+        }
+
+
         if ($_FILES['logo']['name'] != "" || isset($_COOKIE['inputsForSliderLength'])) {
             mkdir($imagesDir);
             if ($_FILES['logo']['name'] != "") {
@@ -105,6 +111,16 @@ class Controller
                 }
                 closedir($dh);
             }
+
+            $carouselJScontent = "
+            document.addEventListener('DOMContentLoaded', function() {
+                var elems = document.querySelectorAll('.carousel');
+                var instances = M.Carousel.init(elems);
+              });
+              ";
+            $carouselFileJS = fopen($pathOfCarouselJS, "w+");
+            fwrite($carouselFileJS, $carouselJScontent);
+            fclose($carouselFileJS);
         }
 
 
@@ -127,6 +143,14 @@ class Controller
         $f = fopen($path, "w+"); // створення файлу лендинга по вказаному шляху
         fwrite($f, $str_land); // запис в файл лендингу
         fclose($f);
+
+        // $pathOfCarouselJS = "{$this->dir}/carousel.js";
+        // $carouselFileJS = fopen($pathOfCarouselJS, "w+");
+        // fwrite($carouselFileJS, "document.addEventListener('DOMContentLoaded', function() {
+        //     var elems = document.querySelectorAll('.carousel');
+        //     var instances = M.Carousel.init(elems);
+        //   });");
+        // fclose($carouselFileJS);
 
         header("Location: ../index.php");
         ob_flush();

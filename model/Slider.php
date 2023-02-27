@@ -20,8 +20,8 @@ EOD;
     {
         $str = <<<EOD
     </div>
+    <script src="./carousel.js"></script>
     <!-------------Кoнец блокa "Slider"-------------------->\n
-    <script src="../carousel/carousel.js"></script>
 EOD;
         return $str;
     }
