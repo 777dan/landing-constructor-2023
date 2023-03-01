@@ -49,12 +49,12 @@ class Controller
         }
 
 
-        if ($_FILES['logo']['name'] != "" || isset($_COOKIE['inputsForSliderLength'])) {
+        if ($_FILES['logo']['name'] != "" || isset($_COOKIE['numberOfsliderElements'])) {
             mkdir($imagesDir);
             if ($_FILES['logo']['name'] != "") {
                 mkdir($logoDir);
             }
-            if (isset($_COOKIE['inputsForSliderLength'])) {
+            if (isset($_COOKIE['numberOfsliderElements'])) {
                 mkdir($sliderDir);
             }
         }
@@ -63,51 +63,59 @@ class Controller
         $tmp_logo = $logo['tmp_name'];
         move_uploaded_file($tmp_logo, "../landing/images/logo/logo.png");
 
-        if ($_POST['text']) {
-            $text = new Text($_POST['text'], $_POST["alignText"], $_POST["text_background_color"], $_POST["text_color"]);
-            $blocks[] = $text;
+        if (isset($_COOKIE['numberOfparagraphs'])) {
+            for ($i = 1; $i <= $_COOKIE['numberOfparagraphs']; $i++) {
+                if ($_POST["paragraph$i"]) {
+                    $paragraphs[] = new Paragraph($_POST["paragraph$i"], $_POST["alignText$i"], $_POST["paragraph_background$i"], $_POST["paragraph_color$i"]);
+                }
+            }
+            $blocks[] = $paragraphs;
         }
 
-        if (isset($_COOKIE['inputsForFormLength'])) {
+        if (isset($_COOKIE['numberOfinputs'])) {
             $true_or_false = false;
-            for ($i = 0; $i < $_COOKIE['inputsForFormLength']; $i++) {
-                if ($_POST["form" . $i + 1]) {
-                    $nameSelect = "selectType" . ($i + 1);
-                    $form[] = new Form($_POST["form" . $i + 1], $_POST[$nameSelect]);
+            for ($i = 0; $i < $_COOKIE['numberOfinputs']; $i++) {
+                if ($_POST["inputName" . $i + 1]) {
+                    $inputTypes = "inputTypes" . ($i + 1);
+                    $type = "";
+                    $name = "";
+                    if (preg_match("#submit\d*#", $_POST[$inputTypes])) $type = "submit";
+                    if (preg_match("#text\d*#", $_POST[$inputTypes])) $type = "text";
+                    $name = $type . $i + 1;
+                    $form[] = new Form($_POST["inputName" . $i + 1], $type, $name);
                 }
                 $true_or_false = true;
             }
             if ($true_or_false == true) $blocks[] = $form;
         }
 
-        if (isset($_COOKIE['inputsForLinksLength'])) {
-            for ($i = 0; $i < $_COOKIE['inputsForLinksLength']; $i++) {
+        if (isset($_COOKIE['numberOflinks'])) {
+            for ($i = 0; $i < $_COOKIE['numberOflinks']; $i++) {
                 if ($_POST["linkName" . $i + 1]) {
-                    $hrefName = "hrefName" . ($i + 1);
-                    $links[] = new Link($_POST["linkName" . $i + 1], $_POST[$hrefName]);
+                    $links[] = new Link($_POST["linkName" . $i + 1], $_POST["linkHref" . ($i + 1)]);
                 }
             }
             $blocks[] = $links;
         }
 
-        if (isset($_COOKIE['inputsForSliderLength'])) {
-            for ($i = 0; $i < $_COOKIE['inputsForSliderLength']; $i++) {
-                $slider_element = $_FILES['uploadImgForm' . $i + 1];
-                $tmp_slider_element = $slider_element['tmp_name'];
-                move_uploaded_file($tmp_slider_element, $sliderDir . "/slider-element" . $i + 1 . ".png");
+        if (isset($_COOKIE['numberOfsliderElements'])) {
+            for ($i = 0; $i < $_COOKIE['numberOfsliderElements']; $i++) {
+                $sliderElement = $_FILES['sliderElement' . $i + 1];
+                $tmp_sliderElement = $sliderElement['tmp_name'];
+                move_uploaded_file($tmp_sliderElement, $sliderDir . "/slider-element" . $i + 1 . ".png");
             }
 
             $count = 0;
-            $slider_elements = array();
+            $sliderElements = array();
             if (is_dir($sliderDir)) {
                 if ($dh = opendir($sliderDir)) {
                     while (($file = readdir($dh)) !== false) {
                         if (preg_match_all("#slider-element\d*\.png#", $file)) {
                             $count++;
-                            $slider_elements[] = new Slider("$sliderDir/$file");
+                            $sliderElements[] = new Slider("$sliderDir/$file");
                         }
                     }
-                    $blocks[] = $slider_elements;
+                    $blocks[] = $sliderElements;
                 }
                 closedir($dh);
             }

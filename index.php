@@ -1,7 +1,8 @@
 <?php
-setcookie("inputsForFormLength");
-setcookie("inputsForSliderLength");
-setcookie("inputsForLinksLength");
+setcookie("numberOfinputs");
+setcookie("numberOfsliderElements");
+setcookie("numberOflinks");
+setcookie("numberOfparagraphs");
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,6 +12,7 @@ setcookie("inputsForLinksLength");
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Landing-page constructor</title>
 </head>
 
@@ -23,12 +25,12 @@ setcookie("inputsForLinksLength");
             <div class="divider light-green darken-1"></div>
             <div class="section">
                 <h3>Title страницы</h3>
-                <input type="input" name="title" value="" placeholder="Введите title страницы" class="design light-green lighten-5" />
+                <input type="text" name="title" value="" placeholder="Введите title страницы" class="design light-green lighten-5" />
             </div>
             <div class="divider light-green darken-1"></div>
             <div class="section">
                 <h3>Заголовок страницы</h3>
-                <input type="input" name="header" value="" placeholder="Введите заголовок страницы" class="design light-green lighten-5" />
+                <input type="text" name="header" value="" placeholder="Введите заголовок страницы" class="design light-green lighten-5" />
                 <details>
                     <summary>Дополнительные настройки</summary>
                     <h5>Картинка для заголовка</h5>
@@ -57,55 +59,35 @@ setcookie("inputsForLinksLength");
             <div class="divider light-green darken-1"></div>
             <div class="section">
                 <h3>Текст страницы</h3>
-                <textarea name="text" value="" placeholder="Введите текст страницы" class="design light-green lighten-5"></textarea>
-                <details>
-                    <summary>Дополнительные настройки</summary>
-                    <h5>Выравнивание основного текста</h5>
-                    <label>
-                        <input class="blue-text text-darken-2" type="radio" name="alignText" value="center">
-                        <span>По центру</span>
-                    </label>
-                    <br>
-                    <label>
-                        <input type="radio" checked name="alignText" value="left">
-                        <span>По левому краю</span>
-                    </label>
-                    <br>
-                    <label>
-                        <input type="radio" name="alignText" value="right">
-                        <span>По правому краю</span>
-                    </label>
-                    <h5>Цвет фона</h5>
-                    <input type="color" name="text_background_color" value="#FFFFFF" class="design" />
-                    <h5>Цвет текста</h5>
-                    <input type="color" name="text_color" value="#000000" class="design" />
-                </details>
+                <div id="paragraphs">
+                </div><br>
+                <input type="button" class="design btn waves-effect waves-light light-green lighten-2" id="newParagraph" value="Добавить новый абзац" />
             </div>
             <div class="divider light-green darken-1"></div>
             <div class="section">
                 <h3>Form страницы</h3>
-                <div id="inputs">
+                <div id="form">
                 </div><br>
-                <input type="button" class="design btn waves-effect waves-light light-green lighten-2" id="addNewInput" value="+" />
+                <input type="button" class="design btn waves-effect waves-light light-green lighten-2" id="newInput" value="Добавить новый input" />
             </div>
             <div class="divider light-green darken-1"></div>
             <div class="section">
                 <h3>Ссылки</h3>
                 <div id="links">
                 </div><br>
-                <input type="button" class="design btn waves-effect waves-light light-green lighten-2" id="addNewLink" value="+" />
+                <input type="button" class="design btn waves-effect waves-light light-green lighten-2" id="newLink" value="Добавить новую ссылку" />
             </div>
             <div class="divider light-green darken-1"></div>
             <div class="section">
                 <h3>Слайдер (карусель)</h3>
-                <div id="slider_elements">
+                <div id="sliderElements">
                 </div><br>
-                <input type="button" class="design btn waves-effect waves-light light-green lighten-2" id="addNewSlider_elements" value="+" />
+                <input type="button" class="design btn waves-effect waves-light light-green lighten-2" id="newSliderElement" value="Добавить новый элемент для слайдера" />
             </div>
             <div class="divider light-green darken-1"></div>
             <div class="section">
                 <h3>Футер страницы</h3>
-                <input type="input" name="footer" value="" placeholder="Введите текст для футера страницы" class="design light-green lighten-5" />
+                <input type="text" name="footer" value="" placeholder="Введите текст для футера страницы" class="design light-green lighten-5" />
                 <details>
                     <summary>Дополнительные настройки</summary>
                     <h5>Выравнивание футера</h5>
@@ -168,9 +150,10 @@ setcookie("inputsForLinksLength");
             </div>
         </div>
     </footer>
-    <script src="./inputs_creating/inputs-creating-for-form.js"></script>
-    <script src="./inputs_creating/inputs-creating-for-carousel.js"></script>
-    <script src="./inputs_creating/inputs-creating-for-links.js"></script>
+    <script src="./special_inputs/newSliderElement.js"></script>
+    <script src="./special_inputs/newInput.js"></script>
+    <script src="./special_inputs/newLink.js"></script>
+    <script src="./special_inputs/newParagraph.js"></script>
 </body>
 
 </html>

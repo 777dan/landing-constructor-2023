@@ -1,14 +1,21 @@
 ::-webkit-input-placeholder {
-    color:    #8bc34a;
+    color: #8bc34a;
 }
 
 input {
-    width: 300px;
+    width: 350px !important;
+}
+
+[type="text"] {
+    padding-left: 10px !important;
+    border-bottom: 0px !important;
+    width: 340px !important;
 }
 
 select {
-    width: 10%;
+    width: 15%;
     display: inline;
+    margin-right: 1px;
 }
 
 [type="radio"]:checked+span:after {
@@ -22,7 +29,18 @@ label {
     color: black;
 }
 
-#addNewInput, #addNewSlider_elements, #addNewLink {
-    font-weight: 900;
-    font-size: 25px;
+i {
+    padding: 0 !important;
+}
+
+[type="button"] {
+    padding: 0 !important;
+}
+
+.creatingInputs {
+    font-size: 16px !important;
+}
+
+.additionalInputs {
+   margin-left: 1px !important; 
 }

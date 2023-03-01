@@ -32,7 +32,7 @@ EOD;
     public function draw()
     {
         $str = <<<EOD
-        <a href="{$this->href}">{$this->name}</a>
+        <a class="btn" href="{$this->href}">{$this->name}</a>
 EOD;
         return $str;
     }
