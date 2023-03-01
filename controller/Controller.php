@@ -9,7 +9,7 @@ class Controller
         $this->dir = $dir;
 
         if (!is_dir($this->dir)) {
-            mkdir($this->dir); // створення каталогу 'landing'
+            mkdir($this->dir); // создание каталога landing
         }
     }
 
@@ -17,20 +17,25 @@ class Controller
     {
         $blocks = array();
         ob_start();
-        /* створення блоків */
+        /* создание блоков */
+        $styles = "html,body{height: 100%;margin: 0;}";
         if ($_POST['header']) {
-            $header = new Header($_POST['header'], $_POST["alignHeader"], $_POST["header_background_color"], $_POST["header_color"]);
+            $styles .= ".header{height: 200px;";
+            if ($_POST['b_Settings'] === "b_image") $styles .= "background: url('./images/b_image/b_image.png') no-repeat;background-size: 100% 200px;";
+            if ($_POST['b_Settings'] === "b_color") $styles .= "background-color: {$_POST['b_color']};";
+            $styles .= "}";
+            $header = new Header($_POST['header'], $_POST["alignHeader"], $_POST['b_Settings'], $_POST["header_color"]);
             $blocks[] = $header;
         }
 
         $imagesDir = "{$this->dir}/images";
-        $logoDir = '../landing/images/logo';
+        $b_imageDir = '../landing/images/b_image';
         $sliderDir = '../landing/images/slider';
         if (is_dir($imagesDir)) {
-            if (is_dir($logoDir)) {
-                if (file_exists("$logoDir/logo.png")) {
-                    unlink("$logoDir/logo.png");
-                    rmdir($logoDir);
+            if (is_dir($b_imageDir)) {
+                if (file_exists("$b_imageDir/b_image.png")) {
+                    unlink("b_imageoDir/b_image.png");
+                    rmdir($b_imageDir);
                 }
             }
             if (is_dir($sliderDir)) {
@@ -49,19 +54,19 @@ class Controller
         }
 
 
-        if ($_FILES['logo']['name'] != "" || isset($_COOKIE['numberOfsliderElements'])) {
+        if ($_FILES['b_image']['name'] != "" || isset($_COOKIE['numberOfsliderElements'])) {
             mkdir($imagesDir);
-            if ($_FILES['logo']['name'] != "") {
-                mkdir($logoDir);
+            if ($_FILES['b_image']['name'] != "") {
+                mkdir($b_imageDir);
             }
             if (isset($_COOKIE['numberOfsliderElements'])) {
                 mkdir($sliderDir);
             }
         }
 
-        $logo = $_FILES['logo'];
-        $tmp_logo = $logo['tmp_name'];
-        move_uploaded_file($tmp_logo, "../landing/images/logo/logo.png");
+        $b_image = $_FILES['b_image'];
+        $tmp_b_image = $b_image['tmp_name'];
+        move_uploaded_file($tmp_b_image, "../landing/images/b_image/b_image.png");
 
         if (isset($_COOKIE['numberOfparagraphs'])) {
             for ($i = 1; $i <= $_COOKIE['numberOfparagraphs']; $i++) {
@@ -137,28 +142,23 @@ class Controller
             $blocks[] = $footer;
         }
 
-        /* створення модели */
+        /* создание модели */
         if ($_POST['title']) {
             $model = new Model($blocks, $_POST['title']);
         } else {
             $model = new Model($blocks);
         }
 
-        /* Робота с моделлю */
-        $str_land = $model->generate(); // генерація тексту лендинга
-
+        $str_land = $model->generate();
         $path = "{$this->dir}/mini.html";
-        $f = fopen($path, "w+"); // створення файлу лендинга по вказаному шляху
-        fwrite($f, $str_land); // запис в файл лендингу
+        $f = fopen($path, "w+");
+        fwrite($f, $str_land);
         fclose($f);
 
-        // $pathOfCarouselJS = "{$this->dir}/carousel.js";
-        // $carouselFileJS = fopen($pathOfCarouselJS, "w+");
-        // fwrite($carouselFileJS, "document.addEventListener('DOMContentLoaded', function() {
-        //     var elems = document.querySelectorAll('.carousel');
-        //     var instances = M.Carousel.init(elems);
-        //   });");
-        // fclose($carouselFileJS);
+        $cssFilePath = "{$this->dir}/style.css";
+        $cssFile = fopen($cssFilePath, "w+");
+        fwrite($cssFile, $styles);
+        fclose($cssFile);
 
         header("Location: ../index.php");
         ob_flush();

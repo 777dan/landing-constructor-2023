@@ -2,21 +2,39 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Landing-page constructor</title>
+        <title>title</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="style.css">
     </head>
-    <style>
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-    } 
-    </style>
-    <body style='background:#ffffff;'>
-             <!-------------Блок "Links"-------------------------->
-    <form>        <a class="btn" href="https://materializecss.com/buttons.html">111111</a>        <a class="btn" href="343">12121</a>    </form>
+    <body style='background:#e1ff4d;'>
+        <!-------------Блок "Header"-------------------------->
+<div class='header'>
+    <h1 style='margin:0;text-align:center;color:b_image;'>header </h1>
+</div>
+<!------------- Кoнец блокa "Header"-------------------->
+     <!-------------Блок "Paragraphs"-------------------------->
+     <div id="main">    <p style='text-align:center;background:#ff6b6b;color:#ffc2c2;'>
+       Hello
+    </p>    <p style='text-align:center;background:#ff8080;color:#704c4c;'>
+       world
+    </p>    </div>
+    <!-------------Кoнец блокa "Paragraphs"-------------------->
+     <!-------------Блок "Form"-------------------------->
+    <form action="action.php" method="post">    <input type="submit" name="submit1" value='1' style="height:auto; width:auto; border: 1px solid black;"/>    <input type="text" name="text2" value='2' style="height:auto; width:auto; border: 1px solid black;"/>    </form>
+    <!-------------Кoнец блокa "Form"-------------------->
+     <!-------------Блок "Links"-------------------------->
+    <form>        <a class="btn" href="1">1</a>        <a class="btn" href="2">2</a>        <a class="btn" href="3">3</a>    </form>
     <!-------------Кoнец блокa "Links"-------------------->
+     <!-------------Блок "Slider"-------------------------->
+     <div class="carousel">        <a class='carousel-item'><img class='slider_images' style='width:auto;' src='../landing/images/slider/slider-element1.png'></a>        <a class='carousel-item'><img class='slider_images' style='width:100px;' src='../landing/images/slider/slider-element2.png'></a>        <a class='carousel-item'><img class='slider_images' style='width:auto;' src='../landing/images/slider/slider-element3.png'></a>    </div>
+    <script src="./carousel.js"></script>
+    <!-------------Кoнец блокa "Slider"-------------------->
+    <!-------------Блок "Footer"-------------------------->
+    <div class='footer'>
+        <h1 style='margin:0;text-align:center;background:#ff6161;color:#fff5f5;'>footer </h1>
+    </div>
+    <!------------- Кoнец блокa "Footer"-------------------->
 
     </body>
 </html>

@@ -67,10 +67,6 @@ class Model
                 }
             } else {
                 $content .= $this->blocks[$i]->draw();
-                if ($this->blocks[$i]->checkType() == "Header") {
-                    if (file_exists('../landing/images/logo/logo.png')) $content .= $this->blocks[$i]->drawHeaderImg();
-                    $content .= $this->blocks[$i]->drawEnd();
-                }
             }
         }
         return $template = <<<EOD
@@ -81,14 +77,8 @@ class Model
         <title>{$this->name}</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="style.css">
     </head>
-    <style>
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-    } 
-    </style>
     <body style='background:{$_POST['color']};'>
         {$content}
     </body>

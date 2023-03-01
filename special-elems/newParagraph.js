@@ -7,7 +7,7 @@ $(document).ready(function () {
     let paragraph = $("<textarea></textarea>");
     paragraph.attr("name", `paragraph${paragraphsArr.length}`);
     paragraph.attr("placeholder", "Введите текст страницы");
-    paragraph.attr("class", "design light-green lighten-5");
+    paragraph.attr("class", "setParagraphes design light-green lighten-5");
     $("#paragraphs").append(paragraph);
 
     let details = $("<details></details>");
@@ -37,7 +37,7 @@ $(document).ready(function () {
       label.append(input);
       span.text(setAlign[i][1]);
       label.append(span);
-      label.after("<br></br>");
+      label.after("<br/>");
     }
     details.after("<br/>");
 
@@ -49,7 +49,7 @@ $(document).ready(function () {
     inputBackground.attr("value", "#FFFFFF");
     inputBackground.attr("class", "design");
     details.append(inputBackground);
-    let headerTextColor = $("<h5></h5>").text("Цвет фона");
+    let headerTextColor = $("<h5></h5>").text("Цвет текста");
     details.append(headerTextColor);
     let inputTextColor = $("<input></input>");
     inputTextColor.attr("type", "color");

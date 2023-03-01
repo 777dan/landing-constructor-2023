@@ -33,8 +33,6 @@ setcookie("numberOfparagraphs");
                 <input type="text" name="header" value="" placeholder="Введите заголовок страницы" class="design light-green lighten-5" />
                 <details>
                     <summary>Дополнительные настройки</summary>
-                    <h5>Картинка для заголовка</h5>
-                    <input type="file" name="logo" value="" class="design light-green lighten-5" />
                     <h5>Выравнивание заголовка</h5>
                     <label>
                         <input class="blue-text text-darken-2" type="radio" name="alignHeader" value="center">
@@ -50,8 +48,14 @@ setcookie("numberOfparagraphs");
                         <input type="radio" name="alignHeader" value="right">
                         <span>По правому краю</span>
                     </label>
-                    <h5>Цвет фона</h5>
-                    <input type="color" name="header_background_color" value="#FFFFFF" class="design" />
+                    <br>
+                    <h5>Настройки фона</h5>
+                    <select name="b_Settings" id="b_Settings">
+                        <option value="b_image">Фоновое изображение</option>
+                        <option value="b_color" selected>Фоновый цвет</option>
+                    </select>
+                    <div id="b_set">
+                    </div>
                     <h5>Цвет текста</h5>
                     <input type="color" name="header_color" value="#000000" class="design" />
                 </details>
@@ -150,10 +154,11 @@ setcookie("numberOfparagraphs");
             </div>
         </div>
     </footer>
-    <script src="./special_inputs/newSliderElement.js"></script>
-    <script src="./special_inputs/newInput.js"></script>
-    <script src="./special_inputs/newLink.js"></script>
-    <script src="./special_inputs/newParagraph.js"></script>
+    <script src="./special-elems/b_header.js"></script>
+    <script src="./special-elems/newSliderElement.js"></script>
+    <script src="./special-elems/newInput.js"></script>
+    <script src="./special-elems/newLink.js"></script>
+    <script src="./special-elems/newParagraph.js"></script>
 </body>
 
 </html>

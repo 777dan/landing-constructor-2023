@@ -1,3 +1,9 @@
+#b_Settings {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 20%;
+}
+
 ::-webkit-input-placeholder {
     color: #8bc34a;
 }
@@ -10,6 +16,16 @@ input {
     padding-left: 10px !important;
     border-bottom: 0px !important;
     width: 340px !important;
+}
+
+.setParagraphes {
+    width: 400px;
+    max-width: 500px;
+    border: transparent;
+}
+
+.setParagraphes:focus {
+    border: transparent;
 }
 
 select {
