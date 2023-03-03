@@ -37,9 +37,9 @@ class Model
         $content = "";
         for ($i = 0; $i < count($this->blocks); $i++) {
             if (gettype($this->blocks[$i]) == "array") {
-                if ($this->blocks[$i][0]->checkType() == "Paragraph") {
+                if ($this->blocks[$i][0]->checkType() == "Text") {
                     $content .= $this->blocks[$i][0]->drawStart();
-                    for ($j = 0; $j < $_COOKIE['numberOfparagraphs']; $j++) {
+                    for ($j = 0; $j < $_COOKIE['numberOftexts']; $j++) {
                         $content .= $this->blocks[$i][$j]->draw();
                     }
                     $content .= $this->blocks[$i][0]->drawEnd();
@@ -66,7 +66,16 @@ class Model
                     $content .= $this->blocks[$i][0]->drawEnd();
                 }
             } else {
-                $content .= $this->blocks[$i]->draw();
+                if ($this->blocks[$i]->checkType() == "Header") {
+                    $content .= $this->blocks[$i]->drawStart();
+                    if (is_dir('../landing/images/b_image')) {
+                        $content .= $this->blocks[$i]->drawParallax();
+                    }
+                    $content .= $this->blocks[$i]->draw();
+                    $content .= $this->blocks[$i]->drawEnd();
+                } else {
+                    $content .= $this->blocks[$i]->draw();
+                }
             }
         }
         return $template = <<<EOD

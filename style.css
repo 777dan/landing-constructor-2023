@@ -18,13 +18,9 @@ input {
     width: 340px !important;
 }
 
-.setParagraphes {
+.setTexts {
     width: 400px;
     max-width: 500px;
-    border: transparent;
-}
-
-.setParagraphes:focus {
     border: transparent;
 }
 
@@ -32,6 +28,7 @@ select {
     width: 15%;
     display: inline;
     margin-right: 1px;
+    float: left;
 }
 
 [type="radio"]:checked+span:after {
@@ -51,10 +48,6 @@ i {
 
 [type="button"] {
     padding: 0 !important;
-}
-
-.creatingInputs {
-    font-size: 16px !important;
 }
 
 .additionalInputs {

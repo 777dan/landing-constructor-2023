@@ -2,7 +2,7 @@
 setcookie("numberOfinputs");
 setcookie("numberOfsliderElements");
 setcookie("numberOflinks");
-setcookie("numberOfparagraphs");
+setcookie("numberOftexts");
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,9 +63,9 @@ setcookie("numberOfparagraphs");
             <div class="divider light-green darken-1"></div>
             <div class="section">
                 <h3>Текст страницы</h3>
-                <div id="paragraphs">
+                <div id="texts">
                 </div><br>
-                <input type="button" class="design btn waves-effect waves-light light-green lighten-2" id="newParagraph" value="Добавить новый абзац" />
+                <input type="button" class="design btn waves-effect waves-light light-green lighten-2" id="newText" value="Добавить новый абзац" />
             </div>
             <div class="divider light-green darken-1"></div>
             <div class="section">
@@ -158,7 +158,7 @@ setcookie("numberOfparagraphs");
     <script src="./special-elems/newSliderElement.js"></script>
     <script src="./special-elems/newInput.js"></script>
     <script src="./special-elems/newLink.js"></script>
-    <script src="./special-elems/newParagraph.js"></script>
+    <script src="./special-elems/newText.js"></script>
 </body>
 
 </html>

@@ -7,7 +7,7 @@ if (file_exists($zipDir)) {
 //потенциальные пути к файлам landing page
 $mainDir = "../landing/";
 $main_file = $mainDir . "mini.html";
-$css_file = $mainDir . "style.css";
+$parallax_file = $mainDir . "parallax.js";
 $imagesDir = $mainDir . "images/";
 $b_imageDir = $imagesDir . 'b_image/b_image.png';
 $sliderDir = $imagesDir . "slider";
@@ -23,9 +23,9 @@ if (file_exists($main_file)) {
     $zip->addFile($main_file, "landing/mini.html");
 }
 
-//проверка и архивация главного css-файла
-if (file_exists($css_file)) {
-    $zip->addFile($css_file, "landing/style.css");
+//проверка и архивация главного parallax-файла
+if (file_exists($parallax_file)) {
+    $zip->addFile($paralaxx_file, "landing/parallax.js");
 }
 
 //проверка и архивация js-файла для слайдера (карусель)

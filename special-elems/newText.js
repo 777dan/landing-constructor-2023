@@ -1,14 +1,33 @@
 //создание input для создания новых абзацов
 $(document).ready(function () {
-  let paragraphsArr = [];
-  $("#newParagraph").click(function () {
-    paragraphsArr.push(`paragraph${paragraphsArr.length + 1}`);
-    document.cookie = `numberOfparagraphs=${paragraphsArr.length}`;
-    let paragraph = $("<textarea></textarea>");
-    paragraph.attr("name", `paragraph${paragraphsArr.length}`);
-    paragraph.attr("placeholder", "Введите текст страницы");
-    paragraph.attr("class", "setParagraphes design light-green lighten-5");
-    $("#paragraphs").append(paragraph);
+  let textsArr = [];
+  $("#newText").click(function () {
+    textsArr.push(`text${textsArr.length + 1}`);
+    document.cookie = `numberOftexts=${textsArr.length}`;
+    let div = $("<div></div>");
+    div.attr("class", "creatingTexts");
+
+    let types = $("<select></select>");
+    types.attr("name", `textTypes${textsArr.length}`);
+    const textTypes = [
+      ["span", "Текст"],
+      ["paragraph", "Абзац"],
+      ["header", "Заголовок"]
+    ];
+    $.each(textTypes, function (i, value) {
+      let type = $("<option></option>");
+      type.attr("value", value[0] + textsArr.length);
+      type.text(value[1]);
+      types.append(type);
+    });
+
+    let text = $("<textarea></textarea>");
+    text.attr("name", `text${textsArr.length}`);
+    text.attr("placeholder", "Введите текст страницы");
+    text.attr("class", "setTexts design light-green lighten-5");
+    $("#texts").append(div);
+    div.append(types);
+    div.append(text);
 
     let details = $("<details></details>");
     let summary = $("<summary></summary>").text("Дополнительные настройки");
@@ -19,33 +38,33 @@ $(document).ready(function () {
       ["right", "По правому краю"]
     ];
 
-    $("#paragraphs").append(details);
+    div.append(details);
     details.append(summary);
     details.append(headerAlign);
-    for (let i = 0; i < setAlign.length; i++) {
+    $.each(setAlign, function (i, value) {
       let label = $("<label></label>");
       let span = $("<span></span>");
       let input = $("<input/>")
       details.append(label);
       input.attr("class", "blue-text text-darken-2");
       input.attr("type", "radio");
-      input.attr("name", `alignText${paragraphsArr.length}`);
-      input.attr("value", setAlign[i][0]);
-      if (setAlign[i][0] === "center") {
+      input.attr("name", `alignText${textsArr.length}`);
+      input.attr("value", value[0]);
+      if (value[0] === "center") {
         input.attr("checked", "checked");
       }
       label.append(input);
-      span.text(setAlign[i][1]);
+      span.text(value[1]);
       label.append(span);
       label.after("<br/>");
-    }
+    });
     details.after("<br/>");
 
     let headerBackground = $("<h5></h5>").text("Цвет фона");
     details.append(headerBackground);
     let inputBackground = $("<input></input>");
     inputBackground.attr("type", "color");
-    inputBackground.attr("name", `paragraph_background${paragraphsArr.length}`);
+    inputBackground.attr("name", `text_background${textsArr.length}`);
     inputBackground.attr("value", "#FFFFFF");
     inputBackground.attr("class", "design");
     details.append(inputBackground);
@@ -53,7 +72,7 @@ $(document).ready(function () {
     details.append(headerTextColor);
     let inputTextColor = $("<input></input>");
     inputTextColor.attr("type", "color");
-    inputTextColor.attr("name", `paragraph_color${paragraphsArr.length}`);
+    inputTextColor.attr("name", `text_color${textsArr.length}`);
     inputTextColor.attr("value", "#000000");
     inputTextColor.attr("class", "design");
     details.append(inputTextColor);

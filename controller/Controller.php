@@ -18,13 +18,20 @@ class Controller
         $blocks = array();
         ob_start();
         /* создание блоков */
-        $styles = "html,body{height: 100%;margin: 0;}";
         if ($_POST['header']) {
-            $styles .= ".header{height: 200px;";
-            if ($_POST['b_Settings'] === "b_image") $styles .= "background: url('./images/b_image/b_image.png') no-repeat;background-size: 100% 200px;";
-            if ($_POST['b_Settings'] === "b_color") $styles .= "background-color: {$_POST['b_color']};";
-            $styles .= "}";
-            $header = new Header($_POST['header'], $_POST["alignHeader"], $_POST['b_Settings'], $_POST["header_color"]);
+            $background_color_header = "transparent";
+            if ($_POST['b_Settings'] === "b_image") {
+                $parallaxJScontent = "document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.parallax');
+                    var instances = M.Parallax.init(elems);
+                });";
+                $parallaxJSpath = "{$this->dir}/parallax.js";
+                $parallsxFile = fopen($parallaxJSpath, "w+");
+                fwrite($parallsxFile, $parallaxJScontent);
+                fclose($parallsxFile);
+            }
+            if ($_POST['b_Settings'] === "b_color") $background_color_header = $_POST['b_Settings'];
+            $header = new Header($_POST['header'], $_POST["alignHeader"], $background_color_header);
             $blocks[] = $header;
         }
 
@@ -34,7 +41,7 @@ class Controller
         if (is_dir($imagesDir)) {
             if (is_dir($b_imageDir)) {
                 if (file_exists("$b_imageDir/b_image.png")) {
-                    unlink("b_imageoDir/b_image.png");
+                    unlink("$b_imageDir/b_image.png");
                     rmdir($b_imageDir);
                 }
             }
@@ -68,13 +75,18 @@ class Controller
         $tmp_b_image = $b_image['tmp_name'];
         move_uploaded_file($tmp_b_image, "../landing/images/b_image/b_image.png");
 
-        if (isset($_COOKIE['numberOfparagraphs'])) {
-            for ($i = 1; $i <= $_COOKIE['numberOfparagraphs']; $i++) {
-                if ($_POST["paragraph$i"]) {
-                    $paragraphs[] = new Paragraph($_POST["paragraph$i"], $_POST["alignText$i"], $_POST["paragraph_background$i"], $_POST["paragraph_color$i"]);
+        if (isset($_COOKIE['numberOftexts'])) {
+            for ($i = 1; $i <= $_COOKIE['numberOftexts']; $i++) {
+                if ($_POST["text$i"]) {
+                    $textTypes = "textTypes$i";
+                    $textType = "";
+                    if (preg_match("#span\d*#", $_POST[$textTypes])) $textType = "span";
+                    if (preg_match("#paragraph\d*#", $_POST[$textTypes])) $textType = "p";
+                    if (preg_match("#header\d*#", $_POST[$textTypes])) $textType = "h3";
+                    $texts[] = new Text($_POST["text$i"], $_POST["alignText$i"], $_POST["text_background$i"], $_POST["text_color$i"], $textType);
                 }
             }
-            $blocks[] = $paragraphs;
+            $blocks[] = $texts;
         }
 
         if (isset($_COOKIE['numberOfinputs'])) {
@@ -82,12 +94,12 @@ class Controller
             for ($i = 0; $i < $_COOKIE['numberOfinputs']; $i++) {
                 if ($_POST["inputName" . $i + 1]) {
                     $inputTypes = "inputTypes" . ($i + 1);
-                    $type = "";
+                    $inputType = "";
                     $name = "";
-                    if (preg_match("#submit\d*#", $_POST[$inputTypes])) $type = "submit";
-                    if (preg_match("#text\d*#", $_POST[$inputTypes])) $type = "text";
-                    $name = $type . $i + 1;
-                    $form[] = new Form($_POST["inputName" . $i + 1], $type, $name);
+                    if (preg_match("#submit\d*#", $_POST[$inputTypes])) $inputType = "submit";
+                    if (preg_match("#text\d*#", $_POST[$inputTypes])) $inputType = "text";
+                    $name = $inputType . $i + 1;
+                    $form[] = new Form($_POST["inputName" . $i + 1], $inputType, $name);
                 }
                 $true_or_false = true;
             }
@@ -154,11 +166,6 @@ class Controller
         $f = fopen($path, "w+");
         fwrite($f, $str_land);
         fclose($f);
-
-        $cssFilePath = "{$this->dir}/style.css";
-        $cssFile = fopen($cssFilePath, "w+");
-        fwrite($cssFile, $styles);
-        fclose($cssFile);
 
         header("Location: ../index.php");
         ob_flush();
