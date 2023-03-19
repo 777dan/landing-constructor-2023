@@ -10,7 +10,6 @@ $(document).ready(function () {
     let types = $("<select></select>");
     types.attr("name", `textTypes${textsArr.length}`);
     const textTypes = [
-      ["span", "Текст"],
       ["paragraph", "Абзац"],
       ["header", "Заголовок"]
     ];

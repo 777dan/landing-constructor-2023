@@ -25,7 +25,7 @@ if (file_exists($main_file)) {
 
 //проверка и архивация главного parallax-файла
 if (file_exists($parallax_file)) {
-    $zip->addFile($paralaxx_file, "landing/parallax.js");
+    $zip->addFile($parallax_file, "landing/parallax.js");
 }
 
 //проверка и архивация js-файла для слайдера (карусель)

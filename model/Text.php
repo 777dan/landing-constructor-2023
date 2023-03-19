@@ -16,7 +16,7 @@ class Text extends Block
     {
         $str = <<<EOD
      <!-------------Блок "Texts"-------------------------->
-     <div id="main" style="text-align:{$this->align};">
+     <div id="main" style="text-align:{$this->align};margin-left:20px;margin-right:20px;">
 EOD;
         return $str;
     }
@@ -31,7 +31,7 @@ EOD;
     public function draw()
     {
         $str = <<<EOD
-    <{$this->textType} style='background:{$this->background_color};color:{$this->color};'>
+    <{$this->textType} style='background:{$this->background_color};color:{$this->color};padding:20px;'>
        {$this->text}
     </{$this->textType}>
 EOD;

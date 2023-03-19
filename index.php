@@ -1,5 +1,4 @@
 <?php
-setcookie("numberOfinputs");
 setcookie("numberOfsliderElements");
 setcookie("numberOflinks");
 setcookie("numberOftexts");
@@ -35,12 +34,12 @@ setcookie("numberOftexts");
                     <summary>Дополнительные настройки</summary>
                     <h5>Выравнивание заголовка</h5>
                     <label>
-                        <input class="blue-text text-darken-2" type="radio" name="alignHeader" value="center">
+                        <input class="blue-text text-darken-2" checked type="radio" name="alignHeader" value="center">
                         <span>По центру</span>
                     </label>
                     <br>
                     <label>
-                        <input type="radio" checked name="alignHeader" value="left">
+                        <input type="radio" name="alignHeader" value="left">
                         <span>По левому краю</span>
                     </label>
                     <br>
@@ -49,15 +48,19 @@ setcookie("numberOftexts");
                         <span>По правому краю</span>
                     </label>
                     <br>
-                    <h5>Настройки фона</h5>
-                    <select name="b_Settings" id="b_Settings">
-                        <option value="b_image">Фоновое изображение</option>
-                        <option value="b_color" selected>Фоновый цвет</option>
-                    </select>
-                    <div id="b_set">
-                    </div>
                     <h5>Цвет текста</h5>
                     <input type="color" name="header_color" value="#000000" class="design" />
+                    <br>
+                    <h5>Настройки фона</h5>
+                    <div id="header_bg">
+                        <select name="b_Settings" id="b_Settings">
+                            <option value="b_image">Фоновое изображение</option>
+                            <option value="b_color" selected>Фоновый цвет</option>
+                        </select>
+                        <br>
+                        <div id="b_set">
+                        </div>
+                    </div>
                 </details>
             </div>
             <div class="divider light-green darken-1"></div>
@@ -69,10 +72,33 @@ setcookie("numberOftexts");
             </div>
             <div class="divider light-green darken-1"></div>
             <div class="section">
-                <h3>Form страницы</h3>
-                <div id="form">
+                <h3>CTA для страницы</h3>
+                <div id="CTA">
                 </div><br>
-                <input type="button" class="design btn waves-effect waves-light light-green lighten-2" id="newInput" value="Добавить новый input" />
+                <input type="text" class="design light-green lighten-5" name="CTA_name" placeholder="Введите текст для CTA" />
+                <input type="text" class="design light-green lighten-5" name="CTA_href" placeholder="Введите ссылку для CTA" />
+                <details>
+                    <summary>Дополнительные настройки</summary>
+                    <h5>Выравнивание CTA</h5>
+                    <label>
+                        <input class="blue-text text-darken-2" checked type="radio" name="alignCTA" value="center">
+                        <span>По центру</span>
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" name="alignCTA" value="left">
+                        <span>По левому краю</span>
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" name="alignCTA" value="right">
+                        <span>По правому краю</span>
+                    </label>
+                    <h5>Цвет CTA</h5>
+                    <input type="color" name="CTA_color" value="#FFFFFF" class="design" />
+                    <h5>Цвет текста</h5>
+                    <input type="color" name="CTA_text_color" value="#000000" class="design" />
+                </details>
             </div>
             <div class="divider light-green darken-1"></div>
             <div class="section">
@@ -96,12 +122,12 @@ setcookie("numberOftexts");
                     <summary>Дополнительные настройки</summary>
                     <h5>Выравнивание футера</h5>
                     <label>
-                        <input class="blue-text text-darken-2" type="radio" name="alignFooter" value="center">
+                        <input class="blue-text text-darken-2" checked type="radio" name="alignFooter" value="center">
                         <span>По центру</span>
                     </label>
                     <br>
                     <label>
-                        <input type="radio" checked name="alignFooter" value="left">
+                        <input type="radio" name="alignFooter" value="left">
                         <span>По левому краю</span>
                     </label>
                     <br>
@@ -156,7 +182,6 @@ setcookie("numberOftexts");
     </footer>
     <script src="./special-elems/b_header.js"></script>
     <script src="./special-elems/newSliderElement.js"></script>
-    <script src="./special-elems/newInput.js"></script>
     <script src="./special-elems/newLink.js"></script>
     <script src="./special-elems/newText.js"></script>
 </body>

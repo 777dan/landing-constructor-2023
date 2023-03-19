@@ -12,7 +12,7 @@ class Slider extends Block
     {
         $str = <<<EOD
      <!-------------Блок "Slider"-------------------------->
-     <div class="carousel">
+     <div class="carousel" style="margin:20px;">
 EOD;
         return $str;
     }

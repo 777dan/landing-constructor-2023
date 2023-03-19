@@ -18,8 +18,8 @@ class Footer extends Block
     {
         $str = <<<EOD
     <!-------------Блок "Footer"-------------------------->
-    <div class='footer'>
-        <h1 style='margin:0;text-align:{$this->align};background:{$this->background_color};color:{$this->color};'>{$this->landing_footer} </h1>
+    <div class='footer' style="padding:20px;background:{$this->background_color};">
+        <h1 style='text-align:{$this->align};color:{$this->color};'>{$this->landing_footer} </h1>
     </div>
     <!------------- Кoнец блокa "Footer"-------------------->\n
 EOD;

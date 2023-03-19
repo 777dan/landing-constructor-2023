@@ -17,14 +17,14 @@ class Link extends Block
     {
         $str = <<<EOD
      <!-------------Блок "Links"-------------------------->
-    <form>
+    <div style="margin-left:20px;margin-right:20px;">
 EOD;
         return $str;
     }
     public function drawEnd()
     {
         $str = <<<EOD
-    </form>
+    </div>
     <!-------------Кoнец блокa "Links"-------------------->\n
 EOD;
         return $str;

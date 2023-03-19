@@ -17,6 +17,11 @@ class Controller
     {
         $blocks = array();
         ob_start();
+
+        $parallax_file = '../landing/parallax.js';
+        if (file_exists($parallax_file)) {
+            unlink($parallax_file);
+        }
         /* создание блоков */
         if ($_POST['header']) {
             $background_color_header = "transparent";
@@ -30,7 +35,7 @@ class Controller
                 fwrite($parallsxFile, $parallaxJScontent);
                 fclose($parallsxFile);
             }
-            if ($_POST['b_Settings'] === "b_color") $background_color_header = $_POST['b_Settings'];
+            if ($_POST['b_Settings'] === "b_color") $background_color_header = $_POST['b_color'];
             $header = new Header($_POST['header'], $_POST["alignHeader"], $background_color_header);
             $blocks[] = $header;
         }
@@ -61,7 +66,7 @@ class Controller
         }
 
 
-        if ($_FILES['b_image']['name'] != "" || isset($_COOKIE['numberOfsliderElements'])) {
+        if (isset($_FILES['b_image']['name']) || isset($_COOKIE['numberOfsliderElements'])) {
             mkdir($imagesDir);
             if ($_FILES['b_image']['name'] != "") {
                 mkdir($b_imageDir);
@@ -71,39 +76,40 @@ class Controller
             }
         }
 
-        $b_image = $_FILES['b_image'];
-        $tmp_b_image = $b_image['tmp_name'];
-        move_uploaded_file($tmp_b_image, "../landing/images/b_image/b_image.png");
+        if (isset($_FILES['b_image']['name'])) {
+            $b_image = $_FILES['b_image'];
+            $tmp_b_image = $b_image['tmp_name'];
+            move_uploaded_file($tmp_b_image, "../landing/images/b_image/b_image.png");
+        }
+
+        if ($_POST['CTA_name'] && $_POST['CTA_href']) {
+            $align = "";
+            if ($_POST['alignCTA'] === "center") {
+                $align = "margin-left: auto;margin-right: auto;";
+            }
+            if ($_POST['alignCTA'] === "right") {
+                $align = "margin-right: auto;";
+            }
+            if ($_POST['alignCTA'] === "left") {
+                $align = "margin-left: auto;";
+            }
+
+            $align = "margin-left: auto;margin-right: auto;";
+            $CTA = new CTA($_POST['CTA_name'], $_POST['CTA_href'], $align, $_POST['CTA_color'], $_POST['CTA_text_color']);
+            $blocks[] = $CTA;
+        }
 
         if (isset($_COOKIE['numberOftexts'])) {
             for ($i = 1; $i <= $_COOKIE['numberOftexts']; $i++) {
                 if ($_POST["text$i"]) {
                     $textTypes = "textTypes$i";
                     $textType = "";
-                    if (preg_match("#span\d*#", $_POST[$textTypes])) $textType = "span";
                     if (preg_match("#paragraph\d*#", $_POST[$textTypes])) $textType = "p";
                     if (preg_match("#header\d*#", $_POST[$textTypes])) $textType = "h3";
                     $texts[] = new Text($_POST["text$i"], $_POST["alignText$i"], $_POST["text_background$i"], $_POST["text_color$i"], $textType);
                 }
             }
             $blocks[] = $texts;
-        }
-
-        if (isset($_COOKIE['numberOfinputs'])) {
-            $true_or_false = false;
-            for ($i = 0; $i < $_COOKIE['numberOfinputs']; $i++) {
-                if ($_POST["inputName" . $i + 1]) {
-                    $inputTypes = "inputTypes" . ($i + 1);
-                    $inputType = "";
-                    $name = "";
-                    if (preg_match("#submit\d*#", $_POST[$inputTypes])) $inputType = "submit";
-                    if (preg_match("#text\d*#", $_POST[$inputTypes])) $inputType = "text";
-                    $name = $inputType . $i + 1;
-                    $form[] = new Form($_POST["inputName" . $i + 1], $inputType, $name);
-                }
-                $true_or_false = true;
-            }
-            if ($true_or_false == true) $blocks[] = $form;
         }
 
         if (isset($_COOKIE['numberOflinks'])) {

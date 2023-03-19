@@ -44,13 +44,6 @@ class Model
                     }
                     $content .= $this->blocks[$i][0]->drawEnd();
                 }
-                if ($this->blocks[$i][0]->checkType() == "Form") {
-                    $content .= $this->blocks[$i][0]->drawStart();
-                    for ($j = 0; $j < $_COOKIE['numberOfinputs']; $j++) {
-                        $content .= $this->blocks[$i][$j]->draw();
-                    }
-                    $content .= $this->blocks[$i][0]->drawEnd();
-                }
                 if ($this->blocks[$i][0]->checkType() == "Link") {
                     $content .= $this->blocks[$i][0]->drawStart();
                     for ($j = 0; $j < $_COOKIE['numberOflinks']; $j++) {

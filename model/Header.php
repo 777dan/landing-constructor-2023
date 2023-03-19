@@ -16,7 +16,7 @@ class Header extends Block
     public function draw()
     {
         $str = <<<EOD
-        <h1 style='margin:0;text-align:{$this->align};background-color:{$this->b_color}'>{$this->landing_header} </h1>
+        <h1 style='margin:0;text-align:{$this->align};'>{$this->landing_header} </h1>
     EOD;
         return $str;
     }
@@ -24,7 +24,7 @@ class Header extends Block
     {
         $str = <<<EOD
     <!-------------Блок "Header"-------------------------->
-    <div class='header'>
+    <div class='header' style="padding:20px;background-color:{$this->b_color};">
 EOD;
         return $str;
     }
