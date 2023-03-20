@@ -115,7 +115,7 @@ class Controller
         if (isset($_COOKIE['numberOflinks'])) {
             for ($i = 0; $i < $_COOKIE['numberOflinks']; $i++) {
                 if ($_POST["linkName" . $i + 1]) {
-                    $links[] = new Link($_POST["linkName" . $i + 1], $_POST["linkHref" . ($i + 1)]);
+                    $links[] = new Link($_POST["linkName" . $i + 1], $_POST["linkHref" . ($i + 1)], $_POST["link_color" . ($i + 1)], $_POST["link_text_color" . ($i + 1)]);
                 }
             }
             $blocks[] = $links;

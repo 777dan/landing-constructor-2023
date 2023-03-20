@@ -1,31 +1,29 @@
 #b_Settings {
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 20%;
 }
 
 ::-webkit-input-placeholder {
     color: #8bc34a;
 }
 
-input {
-    width: 350px !important;
-}
-
 [type="text"] {
     padding-left: 10px !important;
     border-bottom: 0px !important;
-    width: 340px !important;
+}
+
+summary {
+    cursor: pointer;
 }
 
 .setTexts {
-    width: 400px;
-    max-width: 500px;
+    width: 200px;
+    max-width: 300px;
     border: transparent;
 }
 
 select {
-    width: 15%;
+    width: 200px;
     display: inline;
     margin-right: 1px;
     float: left;
@@ -42,18 +40,26 @@ label {
     color: black;
 }
 
-i {
-    padding: 0 !important;
-}
-
-[type="button"] {
-    padding: 0 !important;
-}
-
 .additionalInputs {
     margin-left: 1px !important;
 }
 
-#header_bg {
+input[type="color"] {
+    border: none;
+    background: #aed581;
+    width: 300px;
+    height: 100px;
+}
+
+#showPage {
+    width: 100%;
+    height: 500px;
+}
+
+#result {
     margin-bottom: 10px;
+}
+
+#b_set {
+    margin-top: 20px;
 }

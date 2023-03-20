@@ -30,7 +30,7 @@ $(document).ready(function () {
 
     let details = $("<details></details>");
     let summary = $("<summary></summary>").text("Дополнительные настройки");
-    let headerAlign = $("<h5></h5>").text("Выравнивание абзаца");
+    let headerAlign = $("<h5></h5>").text("Выравнивание текста");
     const setAlign = [
       ["center", "По центру"],
       ["left", "По левому краю"],

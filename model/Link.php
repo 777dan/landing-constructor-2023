@@ -2,22 +2,24 @@
 
 class Link extends Block
 {
-    protected $name, $href;
+    protected $name, $href, $color, $text_color;
 
     public function getName()
     {
         return $this->name;
     }
-    public function __construct($name, $href)
+    public function __construct($name, $href, $color, $text_color)
     {
         $this->name = $name;
         $this->href = $href;
+        $this->color = $color;
+        $this->text_color = $text_color;
     }
     public function drawStart()
     {
         $str = <<<EOD
      <!-------------Блок "Links"-------------------------->
-    <div style="margin-left:20px;margin-right:20px;">
+    <div style="margin-left:20px;margin-right:20px;text-align:center;">
 EOD;
         return $str;
     }
@@ -32,7 +34,7 @@ EOD;
     public function draw()
     {
         $str = <<<EOD
-        <a class="btn" href="{$this->href}">{$this->name}</a>
+        <a class="btn" style="color:{$this->text_color};background:{$this->color};" href="{$this->href}">{$this->name}</a>
 EOD;
         return $str;
     }
