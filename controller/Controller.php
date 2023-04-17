@@ -25,6 +25,10 @@ class Controller
         /* создание блоков */
         if ($_POST['header']) {
             $background_color_header = "transparent";
+            $h_alignPercents = "50%";
+            if ($_POST["alignHeader"] == "left") $h_alignPercents = "10%";
+            if ($_POST["alignHeader"] == "right") $h_alignPercents = "90%";
+            $h_align = [$_POST["alignHeader"], $h_alignPercents];
             if ($_POST['b_Settings'] === "b_image") {
                 $parallaxJScontent = "document.addEventListener('DOMContentLoaded', function() {
                     var elems = document.querySelectorAll('.parallax');
@@ -36,7 +40,7 @@ class Controller
                 fclose($parallsxFile);
             }
             if ($_POST['b_Settings'] === "b_color") $background_color_header = $_POST['b_color'];
-            $header = new Header($_POST['header'], $_POST["alignHeader"], $background_color_header);
+            $header = new Header($_POST['header'], $h_align, $background_color_header, $_POST['header_color']);
             $blocks[] = $header;
         }
 
@@ -88,13 +92,13 @@ class Controller
                 $align = "margin-left: auto;margin-right: auto;";
             }
             if ($_POST['alignCTA'] === "right") {
-                $align = "margin-right: auto;";
-            }
-            if ($_POST['alignCTA'] === "left") {
                 $align = "margin-left: auto;";
             }
+            if ($_POST['alignCTA'] === "left") {
+                $align = "margin-right: auto;";
+            }
 
-            $align = "margin-left: auto;margin-right: auto;";
+            // $align = "margin-left: auto;margin-right: auto;";
             $CTA = new CTA($_POST['CTA_name'], $_POST['CTA_href'], $align, $_POST['CTA_color'], $_POST['CTA_text_color']);
             $blocks[] = $CTA;
         }

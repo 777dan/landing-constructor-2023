@@ -4,27 +4,55 @@ class Header extends Block
 {
 
     private $landing_header;
-    private $align, $b_color;
+    private $align, $b_color, $text_color;
 
-    public function __construct($landing_header = "Header", $align, $b_color)
+    public function __construct($landing_header = "Header", $align, $b_color, $text_color)
     {
         $this->landing_header = $landing_header;
         $this->align = $align;
         $this->b_color = $b_color;
+        $this->text_color = $text_color;
     }
 
     public function draw()
     {
         $str = <<<EOD
-        <h1 style='margin:0;text-align:{$this->align};'>{$this->landing_header} </h1>
+        <h1 class="aligned-header" style="margin:0;color:{$this->text_color};">{$this->landing_header}</h1>
     EOD;
         return $str;
     }
-    public function drawStart()
+    public function drawParallaxStart()
     {
         $str = <<<EOD
     <!-------------Блок "Header"-------------------------->
-    <div class='header' style="padding:20px;background-color:{$this->b_color};">
+    <style>
+    .header {
+        position: relative;
+    }
+
+    .parallax-container {
+        height: 400px;
+        /* высота контейнера с параллакс-изображением */
+        position: relative;
+    }
+
+    .header>h1 {
+        position: absolute;
+        top: 50%;
+        left: {$this->align[1]};
+        transform: translate(-50%, -50%);
+        margin: 0;
+        z-index: 1;
+    }
+    </style>
+    <div class='header'>
+EOD;
+        return $str;
+    }
+    public function drawStandartStart()
+    {
+        $str = <<<EOD
+        <div class='header' style="background-color:{$this->b_color};text-align:{$this->align[0]};padding:50px;">
 EOD;
         return $str;
     }

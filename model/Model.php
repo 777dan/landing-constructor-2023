@@ -60,9 +60,11 @@ class Model
                 }
             } else {
                 if ($this->blocks[$i]->checkType() == "Header") {
-                    $content .= $this->blocks[$i]->drawStart();
                     if (is_dir('../landing/images/b_image')) {
+                        $content .= $this->blocks[$i]->drawParallaxStart();
                         $content .= $this->blocks[$i]->drawParallax();
+                    } else {
+                        $content .= $this->blocks[$i]->drawStandartStart();
                     }
                     $content .= $this->blocks[$i]->draw();
                     $content .= $this->blocks[$i]->drawEnd();

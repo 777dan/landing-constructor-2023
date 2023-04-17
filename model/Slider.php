@@ -12,7 +12,7 @@ class Slider extends Block
     {
         $str = <<<EOD
      <!-------------Блок "Slider"-------------------------->
-     <div class="carousel" style="margin:20px;">
+     <div class="carousel">
 EOD;
         return $str;
     }
@@ -28,7 +28,7 @@ EOD;
     public function draw()
     {
         $str = <<<EOD
-        <a class='carousel-item'><img class='slider_images' style='width:300px;' src='{$this->path}'></a>
+        <a class='carousel-item' style='width:300px;'><img class='slider_images' src='{$this->path}'></a>
 EOD;
         return $str;
     }
