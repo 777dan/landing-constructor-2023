@@ -18,11 +18,31 @@ class Controller
         $blocks = array();
         ob_start();
 
-        $parallax_file = '../landing/parallax.js';
+        $parallax_file = "{$this->dir}/parallax.js";
         if (file_exists($parallax_file)) {
             unlink($parallax_file);
         }
+
+        $navbarJSpath = "{$this->dir}/navbar.js";
+        if (file_exists($navbarJSpath)) {
+            unlink($navbarJSpath);
+        }
         /* создание блоков */
+        if (isset($_COOKIE['numberOfnavElems'])) {
+            $navbarJS = fopen($navbarJSpath, "w");
+            $nabarJScontent = "(function ($) {
+                $(function () {
+                    $('.sidenav').sidenav();
+                });
+            })(jQuery);";
+            fwrite($navbarJS, $nabarJScontent);
+            fclose($navbarJS);
+            for ($i = 0; $i < $_COOKIE['numberOfnavElems']; $i++) {
+                $navbar[] = new Navbar($_POST["logo_name"], $_POST["navElemName" . $i + 1], $_POST["navElemHref" . ($i + 1)], $_POST["navElemTextColor" . ($i + 1)], $_POST["navbar_color"]);
+            }
+            $blocks[] = $navbar;
+        }
+
         if ($_POST['header']) {
             $background_color_header = "transparent";
             $h_alignPercents = "50%";
@@ -67,6 +87,13 @@ class Controller
         $pathOfCarouselJS = "{$this->dir}/carousel.js";
         if (file_exists($pathOfCarouselJS)) {
             unlink($pathOfCarouselJS);
+        }
+
+        $materializeJSpath = "{$this->dir}/materialize.js";
+        if (!file_exists($materializeJSpath)) {
+            $materializeJS = fopen($materializeJSpath, "w");
+            copy("../materialize.js", $materializeJSpath);
+            fclose($materializeJS);
         }
 
 

@@ -3,11 +3,6 @@
 class Link extends Block
 {
     protected $name, $href, $color, $text_color;
-
-    public function getName()
-    {
-        return $this->name;
-    }
     public function __construct($name, $href, $color, $text_color)
     {
         $this->name = $name;

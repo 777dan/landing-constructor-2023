@@ -1,6 +1,7 @@
 <?php
 setcookie("numberOfsliderElements");
 setcookie("numberOflinks");
+setcookie("numberOfnavElems");
 setcookie("numberOftexts");
 ?>
 <!DOCTYPE html>
@@ -31,6 +32,20 @@ setcookie("numberOftexts");
                     <div class="section">
                         <h3>Title страницы</h3>
                         <input type="text" name="title" value="" placeholder="Введите title страницы" class="design light-green lighten-5" />
+                    </div>
+                </div>
+                <div class="col s12">
+                    <div class="divider light-green darken-1"></div>
+                    <div class="section">
+                        <h3>Навигационное меню</h3>
+                        <h5>Логотип</h5>
+                        <input type="text" name="logo_name" value="" placeholder="Введите текст для логотипа" class="design light-green lighten-5" />
+                        <h5>Цвет фона</h5>
+                        <input type="color" name="navbar_color" value="#FFFFFF" class="design" />
+                        <h5>Элементы навигационного меню</h5>
+                        <div id="nav-elems">
+                        </div><br>
+                        <input type="button" class="design btn waves-effect waves-light light-green lighten-2" id="newNavElem" value="Добавить новый элемент навигационного меню" />
                     </div>
                 </div>
                 <div class="col s12">
@@ -207,6 +222,7 @@ setcookie("numberOftexts");
     <script src="./special-elems/b_header.js"></script>
     <script src="./special-elems/newSliderElement.js"></script>
     <script src="./special-elems/newLink.js"></script>
+    <script src="./special-elems/newNavElem.js"></script>
     <script src="./special-elems/newText.js"></script>
 </body>
 

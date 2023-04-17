@@ -3,15 +3,27 @@
     <head>
         <meta charset="UTF-8">
         <title>Landing-page constructor</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <link rel="stylesheet" href="style.css">
     </head>
     <body style='background:#ffffff;'>
-             <!-------------Блок "Slider"-------------------------->
-     <div class="carousel">        <a class='carousel-item' style='width:300px;'><img class='slider_images' src='../landing/images/slider/slider-element1.png'></a>        <a class='carousel-item' style='width:300px;'><img class='slider_images' src='../landing/images/slider/slider-element2.png'></a>        <a class='carousel-item' style='width:300px;'><img class='slider_images' src='../landing/images/slider/slider-element3.png'></a>    </div>
-    <script src="./carousel.js"></script>
-    <!-------------Кoнец блокa "Slider"-------------------->
+             <!-------------Блок "Navbar"-------------------------->
+     <nav style="padding-left:20%;padding-right:20%;background:#21343f;">
+     <div class="nav-wrapper">
+         <a href="mini.html" class="brand-logo">Palmeria</a>
+         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+         <ul class="right hide-on-med-and-down">        <li><a style="color:#ffffff;" href="">Menu</a></li>        <li><a style="color:#ffffff;" href="">About Us</a></li>        </ul>
+        </div>
+    </nav>
 
+    <ul class="sidenav" id="mobile-demo">        <li><a style="color:#ffffff;" href="">Menu</a></li>        <li><a style="color:#ffffff;" href="">About Us</a></li>        </ul>
+    <!-------------Кoнец блокa "Navbar"-------------------->
+        <div class='header' style="background-color:#55aa7e;text-align:center;padding:50px;">    <h1 class="aligned-header" style="margin:0;color:#195d2d;">Palmeria</h1>    </div>
+    <!------------- Кoнец блокa "Header"-------------------->
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="./materialize.js"></script>
+    <script src="./navbar.js"></script>
     </body>
 </html>

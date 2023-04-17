@@ -51,6 +51,17 @@ class Model
                     }
                     $content .= $this->blocks[$i][0]->drawEnd();
                 }
+                if ($this->blocks[$i][0]->checkType() == "Navbar") {
+                    $content .= $this->blocks[$i][0]->drawStart();
+                    for ($j = 0; $j < $_COOKIE['numberOfnavElems']; $j++) {
+                        $content .= $this->blocks[$i][$j]->draw();
+                    }
+                    $content .= $this->blocks[$i][0]->drawMiddle();
+                    for ($j = 0; $j < $_COOKIE['numberOfnavElems']; $j++) {
+                        $content .= $this->blocks[$i][$j]->draw();
+                    }
+                    $content .= $this->blocks[$i][0]->drawEnd();
+                }
                 if ($this->blocks[$i][0]->checkType() == "Slider") {
                     $content .= $this->blocks[$i][0]->drawStart();
                     for ($j = 0; $j < $_COOKIE['numberOfsliderElements']; $j++) {
@@ -79,12 +90,15 @@ class Model
     <head>
         <meta charset="UTF-8">
         <title>{$this->name}</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <link rel="stylesheet" href="style.css">
     </head>
     <body style='background:{$_POST['color']};'>
         {$content}
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="./materialize.js"></script>
+    <script src="./navbar.js"></script>
     </body>
 </html>
 EOD;
