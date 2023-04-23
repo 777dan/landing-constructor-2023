@@ -3,15 +3,16 @@
 class Footer extends Block
 {
 
-    private $footer_logo_name, $footer_text_color, $footer_bg_color, $footerColHeader, $colElem;
+    private $footer_logo_name, $footer_text_color, $footer_bg_color, $footerColHeader, $colElemsArr, $colElemsHrefArr;
 
-    public function __construct($footer_logo_name, $footer_text_color, $footer_bg_color, $footerColHeader, $colElem)
+    public function __construct($footer_logo_name, $footer_text_color, $footer_bg_color, $footerColHeader, $colElemsArr, $colElemsHrefArr)
     {
         $this->footer_logo_name = $footer_logo_name;
         $this->footer_text_color = $footer_text_color;
         $this->footer_bg_color = $footer_bg_color;
         $this->footerColHeader = $footerColHeader;
-        $this->colElem = $colElem;
+        $this->colElemsArr = $colElemsArr;
+        $this->colElemsHrefArr = $colElemsHrefArr;
     }
     public function drawStart()
     {
@@ -55,7 +56,7 @@ EOD;
     public function drawElem($counter)
     {
         $str = <<<EOD
-        <li><a style='color:{$this->footer_text_color};' href="#!">{$this->colElem[$counter]}</a></li>
+        <li><a style='color:{$this->footer_text_color};' href="{$this->colElemsHrefArr[$counter]}">{$this->colElemsArr[$counter]}</a></li>
 EOD;
         return $str;
     }

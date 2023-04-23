@@ -75,7 +75,7 @@ class Model
                     for ($j = 0; $j < count($this->blocks[$i]); $j++) {
                         $content .= $this->blocks[$i][$j]->draw();
                         $numberOfFooterColElems = explode(",", $_COOKIE['numberOfFooterColElems']);
-                        unset($numberOfFooterColElems[count($numberOfFooterColElems) - 1]);
+                        array_pop($numberOfFooterColElems);
 
                         for ($index = 0; $index < (int)$numberOfFooterColElems[$j]; $index++) {
                             $content .= $this->blocks[$i][$j]->drawElem($index);

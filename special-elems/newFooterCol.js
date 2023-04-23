@@ -35,7 +35,13 @@ $(document).ready(function () {
       col_Elem.attr("name", `colElem${colNum}_${$(this).siblings("input[type=text]").length}`);
       col_Elem.attr("placeholder", "Текст элемента колонки");
       col_Elem.attr("class", "design light-green lighten-5");
+      let elem_href = $("<input/>");
+      elem_href.attr("type", "text");
+      elem_href.attr("name", `colElemHref${colNum}_${$(this).siblings("input[type=text]").length}`);
+      elem_href.attr("placeholder", "Ссылка элемента колонки");
+      elem_href.attr("class", "design light-green lighten-5");
       $(this).before(col_Elem);
+      $(this).before(elem_href);
       let colElems = "";
       $(".creatingFooterCols").each(function(i, value){
         colElems += `${$(`#createCol${i + 1}`).children("input[type=text]").length - 1},`;

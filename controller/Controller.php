@@ -188,14 +188,17 @@ class Controller
 
         if (isset($_COOKIE['numberOfFooterCols'])) {
             $numberOfFooterColElems = explode(",", $_COOKIE['numberOfFooterColElems']);
-            unset($numberOfFooterColElems[count($numberOfFooterColElems) - 1]);
+            array_pop($numberOfFooterColElems);
             for ($j = 0; $j < count($numberOfFooterColElems); $j++) {
                 $colElemsArr = [];
+                $colElemsHrefArr = [];
                 for ($index = 0; $index < (int)$numberOfFooterColElems[$j]; $index++) {
                     $colElems = $_POST["colElem" . $j + 1 . "_" . $index + 1];
+                    $colElemsHref = $_POST["colElemHref" . $j + 1 . "_" . $index + 1];
                     $colElemsArr[] = $colElems;
+                    $colElemsHrefArr[] = $colElemsHref;
                 }
-                $footer[] = new Footer($_POST['footer_logo_name'], $_POST["footer_text_color"], $_POST["footer_bg_color"], $_POST["footerColHeader" . $j + 1], $colElemsArr);
+                $footer[] = new Footer($_POST['footer_logo_name'], $_POST["footer_text_color"], $_POST["footer_bg_color"], $_POST["footerColHeader" . $j + 1], $colElemsArr, $colElemsHrefArr);
             }
             $blocks[] = $footer;
         }
