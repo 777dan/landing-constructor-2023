@@ -186,12 +186,23 @@ class Controller
         }
 
 
-        if ($_POST['footer']) {
-            $footer = new Footer($_POST['footer'], $_POST["alignFooter"], $_POST["footer_background_color"], $_POST["footer_color"]);
+        if (isset($_COOKIE['numberOfFooterCols'])) {
+            $numberOfFooterColElems = explode(",", $_COOKIE['numberOfFooterColElems']);
+            unset($numberOfFooterColElems[count($numberOfFooterColElems) - 1]);
+            for ($j = 0; $j < count($numberOfFooterColElems); $j++) {
+                $colElemsArr = [];
+                for ($index = 0; $index < (int)$numberOfFooterColElems[$j]; $index++) {
+                    $colElems = $_POST["colElem" . $j + 1 . "_" . $index + 1];
+                    $colElemsArr[] = $colElems;
+                }
+                $footer[] = new Footer($_POST['footer_logo_name'], $_POST["footer_text_color"], $_POST["footer_bg_color"], $_POST["footerColHeader" . $j + 1], $colElemsArr);
+            }
             $blocks[] = $footer;
         }
 
         /* создание модели */
+
+
         if ($_POST['title']) {
             $model = new Model($blocks, $_POST['title']);
         } else {

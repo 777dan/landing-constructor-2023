@@ -2,6 +2,8 @@
 setcookie("numberOfsliderElements");
 setcookie("numberOflinks");
 setcookie("numberOfnavElems");
+setcookie("numberOfFooterCols");
+setcookie("numberOfFooterColElems");
 setcookie("numberOftexts");
 ?>
 <!DOCTYPE html>
@@ -148,29 +150,16 @@ setcookie("numberOftexts");
                     <div class="divider light-green darken-1"></div>
                     <div class="section">
                         <h3>Футер страницы</h3>
-                        <input type="text" name="footer" value="" placeholder="Введите текст для футера страницы" class="design light-green lighten-5" />
-                        <details>
-                            <summary>Дополнительные настройки</summary>
-                            <h5>Выравнивание футера</h5>
-                            <label>
-                                <input class="blue-text text-darken-2" checked type="radio" name="alignFooter" value="center">
-                                <span>По центру</span>
-                            </label>
-                            <br>
-                            <label>
-                                <input type="radio" name="alignFooter" value="left">
-                                <span>По левому краю</span>
-                            </label>
-                            <br>
-                            <label>
-                                <input type="radio" name="alignFooter" value="right">
-                                <span>По правому краю</span>
-                            </label>
-                            <h5>Цвет фона</h5>
-                            <input type="color" name="footer_background_color" value="#FFFFFF" class="design" />
-                            <h5>Цвет текста</h5>
-                            <input type="color" name="footer_color" value="#000000" class="design" />
-                        </details>
+                        <h5>Логотип</h5>
+                        <input type="text" name="footer_logo_name" value="" placeholder="Введите текст для логотипа" class="design light-green lighten-5" />
+                        <h5>Колонки футера</h5>
+                        <div id="footer-cols">
+                        </div><br>
+                        <input type="button" class="design btn waves-effect waves-light light-green lighten-2" id="newFooterCol" value="Добавить новую колонку футера" />
+                        <h5>Цвет фона</h5>
+                        <input type="color" name="footer_bg_color" value="#FFFFFF" class="design" />
+                        <h5>Цвет текста</h5>
+                        <input type="color" name="footer_text_color" value="#000000" class="design" />
                     </div>
                 </div>
                 <div class="col s12">
@@ -223,6 +212,7 @@ setcookie("numberOftexts");
     <script src="./special-elems/newSliderElement.js"></script>
     <script src="./special-elems/newLink.js"></script>
     <script src="./special-elems/newNavElem.js"></script>
+    <script src="./special-elems/newFooterCol.js"></script>
     <script src="./special-elems/newText.js"></script>
 </body>
 

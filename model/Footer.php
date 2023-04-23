@@ -3,31 +3,74 @@
 class Footer extends Block
 {
 
-    private $landing_footer;
-    private $align, $background_color, $color;
+    private $footer_logo_name, $footer_text_color, $footer_bg_color, $footerColHeader, $colElem;
 
-    public function __construct($landing_footer = "Footer", $align, $background_color, $color)
+    public function __construct($footer_logo_name, $footer_text_color, $footer_bg_color, $footerColHeader, $colElem)
     {
-        $this->landing_footer = $landing_footer;
-        $this->align = $align;
-        $this->background_color = $background_color;
-        $this->color = $color;
+        $this->footer_logo_name = $footer_logo_name;
+        $this->footer_text_color = $footer_text_color;
+        $this->footer_bg_color = $footer_bg_color;
+        $this->footerColHeader = $footerColHeader;
+        $this->colElem = $colElem;
+    }
+    public function drawStart()
+    {
+        $str = <<<EOD
+        <!-------------Блок 'Footer'-------------------------->
+        <footer style='background:{$this->footer_bg_color};' class='page-footer'>
+    <div class='container'>
+      <div class='row valign-wrapper'>
+        <div class='center-align col l6 s12'>
+        <h5 style='color:{$this->footer_text_color};'>{$this->footer_logo_name}</h5>
+            </div>
+EOD;
+        return $str;
+    }
+
+    public function drawEnd()
+    {
+        $str = <<<EOD
+        </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          Made by <a style='color:{$this->footer_text_color};' class="text-lighten-3">{$this->footer_logo_name}</a>
+          </div>
+          </div>
+        </footer>
+    <!------------- Кoнец блокa 'Footer'-------------------->\n
+EOD;
+        return $str;
     }
 
     public function draw()
     {
         $str = <<<EOD
-    <!-------------Блок "Footer"-------------------------->
-    <div class='footer' style="padding:20px;background:{$this->background_color};">
-        <h1 style='text-align:{$this->align};color:{$this->color};'>{$this->landing_footer} </h1>
-    </div>
-    <!------------- Кoнец блокa "Footer"-------------------->\n
+        <div class="col l3 s12">
+              <h5 style='color:{$this->footer_text_color};'>{$this->footerColHeader}</h5>
+              <ul>
+EOD;
+        return $str;
+    }
+    public function drawElem($counter)
+    {
+        $str = <<<EOD
+        <li><a style='color:{$this->footer_text_color};' href="#!">{$this->colElem[$counter]}</a></li>
+EOD;
+        return $str;
+    }
+
+    public function drawColEnd()
+    {
+        $str = <<<EOD
+        </ul>
+        </div>
 EOD;
         return $str;
     }
 
     public function checkType()
     {
-        return "Footer";
+        return 'Footer';
     }
 }

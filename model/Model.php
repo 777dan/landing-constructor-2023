@@ -69,6 +69,21 @@ class Model
                     }
                     $content .= $this->blocks[$i][0]->drawEnd();
                 }
+                if ($this->blocks[$i][0]->checkType() == "Footer") {
+                    $content .= $this->blocks[$i][0]->drawStart();
+
+                    for ($j = 0; $j < count($this->blocks[$i]); $j++) {
+                        $content .= $this->blocks[$i][$j]->draw();
+                        $numberOfFooterColElems = explode(",", $_COOKIE['numberOfFooterColElems']);
+                        unset($numberOfFooterColElems[count($numberOfFooterColElems) - 1]);
+
+                        for ($index = 0; $index < (int)$numberOfFooterColElems[$j]; $index++) {
+                            $content .= $this->blocks[$i][$j]->drawElem($index);
+                        }
+                        $content .= $this->blocks[$i][$j]->drawColEnd();
+                    }
+                    $content .= $this->blocks[$i][0]->drawEnd();
+                }
             } else {
                 if ($this->blocks[$i]->checkType() == "Header") {
                     if (is_dir('../landing/images/b_image')) {
