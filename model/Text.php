@@ -2,15 +2,16 @@
 
 class Text extends Block
 {
-    private $text, $align, $background_color, $color, $textType;
+    private $text, $align, $background_color, $color, $textType, $id_name;
 
-    public function __construct($text, $align, $background_color, $color, $textType)
+    public function __construct($text, $align, $background_color, $color, $textType, $id_name)
     {
         $this->text = $text;
         $this->align = $align;
         $this->background_color = $background_color;
         $this->color = $color;
         $this->textType = $textType;
+        $this->id_name = $id_name;
     }
     public function drawStart()
     {
@@ -31,7 +32,7 @@ EOD;
     public function draw()
     {
         $str = <<<EOD
-    <{$this->textType} style='background:{$this->background_color};color:{$this->color};padding:20px;'>
+    <{$this->textType} {$this->id_name} style='background:{$this->background_color};color:{$this->color};padding:20px;'>
        {$this->text}
     </{$this->textType}>
 EOD;

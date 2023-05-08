@@ -56,6 +56,11 @@ input[type="color"] {
     height: 500px;
 }
 
+textarea {
+    float: left;  
+    margin-right: 1px;  
+}
+
 #result {
     margin-bottom: 10px;
 }

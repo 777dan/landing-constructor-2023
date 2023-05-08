@@ -28,6 +28,12 @@ $(document).ready(function () {
     div.append(types);
     div.append(text);
 
+    let id_name = $("<input></input>");
+    id_name.attr("name", `id_name_text${textsArr.length}`);
+    id_name.attr("placeholder", "Введите id текста");
+    id_name.attr("class", "setTexts design light-green lighten-5");
+    div.append(id_name);
+
     let details = $("<details></details>");
     let summary = $("<summary></summary>").text("Дополнительные настройки");
     let headerAlign = $("<h5></h5>").text("Выравнивание текста");

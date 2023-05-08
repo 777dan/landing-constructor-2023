@@ -143,6 +143,7 @@ setcookie("numberOftexts");
                         <h3>Слайдер (карусель)</h3>
                         <div id="sliderElements">
                         </div><br>
+                        <input type="text" class="design light-green lighten-5" name="id_name_slider" placeholder="Введите id для слайдера" />
                         <input type="button" class="design btn waves-effect waves-light light-green lighten-2" id="newSliderElement" value="Добавить новый элемент для слайдера" />
                     </div>
                 </div>

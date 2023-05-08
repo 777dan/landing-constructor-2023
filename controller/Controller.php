@@ -137,7 +137,12 @@ class Controller
                     $textType = "";
                     if (preg_match("#paragraph\d*#", $_POST[$textTypes])) $textType = "p";
                     if (preg_match("#header\d*#", $_POST[$textTypes])) $textType = "h3";
-                    $texts[] = new Text($_POST["text$i"], $_POST["alignText$i"], $_POST["text_background$i"], $_POST["text_color$i"], $textType);
+                    if ($_POST["id_name_text$i"]) {
+                        $id_name_text = "id='" . $_POST["id_name_text$i"] . "'";
+                    } else {
+                        $id_name_text = "";
+                    }
+                    $texts[] = new Text($_POST["text$i"], $_POST["alignText$i"], $_POST["text_background$i"], $_POST["text_color$i"], $textType, $id_name_text);
                 }
             }
             $blocks[] = $texts;
@@ -162,11 +167,16 @@ class Controller
             $count = 0;
             $sliderElements = array();
             if (is_dir($sliderDir)) {
+                if ($_POST['id_name_slider']) {
+                    $id_name_slider = "id='" . $_POST['id_name_slider'] . "'";
+                } else {
+                    $id_name_slider = "";
+                }
                 if ($dh = opendir($sliderDir)) {
                     while (($file = readdir($dh)) !== false) {
                         if (preg_match_all("#slider-element\d*\.png#", $file)) {
                             $count++;
-                            $sliderElements[] = new Slider("$sliderDir/$file");
+                            $sliderElements[] = new Slider("$sliderDir/$file", $id_name_slider);
                         }
                     }
                     $blocks[] = $sliderElements;

@@ -3,38 +3,43 @@
 class Slider extends Block
 {
     public $path;
+    public $id_name;
 
-    public function __construct($path)
+    public function __construct($path, $id_name)
     {
         $this->path = $path;
+        $this->id_name = $id_name;
     }
+
     public function drawStart()
     {
-        $str = <<<EOD
-     <!-------------Блок "Slider"-------------------------->
-     <div class="carousel">
-EOD;
-        return $str;
+        return "
+        <!-------------Блок 'Slider'-------------------------->
+        <div {$this->id_name} class='carousel'>
+        ";
     }
+
     public function drawEnd()
     {
-        $str = <<<EOD
-    </div>
-    <script src="./carousel.js"></script>
-    <!-------------Кoнец блокa "Slider"-------------------->\n
-EOD;
-        return $str;
+        return "
+        </div>
+        <script src='./carousel.js'></script>
+        <!-------------Кoнец блокa 'Slider'-------------------->\n
+        ";
     }
+
     public function draw()
     {
-        $str = <<<EOD
-        <a class='carousel-item' style='width:300px;'><img class='slider_images' src='{$this->path}'></a>
-EOD;
-        return $str;
+        return "
+        <a class='carousel-item' style='width:300px;'>
+            <img class='slider_images' src='{$this->path}'>
+        </a>
+        ";
     }
 
     public function checkType()
     {
-        return "Slider";
+        return 'Slider';
     }
 }
+

@@ -8,27 +8,36 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body style='background:#ffffff;'>
-                <!-------------Блок 'Footer'-------------------------->
-        <footer style='background:#ffffff;' class='page-footer'>
-    <div class='container'>
-      <div class='row valign-wrapper'>
-        <div class='center-align col l6 s12'>
-        <h5 style='color:#000000;'>Logot</h5>
-            </div>        <div class="col l3 s12">
-              <h5 style='color:#000000;'>col1</h5>
-              <ul>        <li><a style='color:#000000;' href="http://php.web-online.net.ua/1-2-ustanovka-i-nastrojka-po-distributivy-xamp-integrirovannaya-sreda-razrabotki-netbeans-konsolnoe-prilozhenie-php/">e1</a></li>        <li><a style='color:#000000;' href=""></a></li>        <li><a style='color:#000000;' href="http://php.web-online.net.ua/1-2-ustanovka-i-nastrojka-po-distributivy-xamp-integrirovannaya-sreda-razrabotki-netbeans-konsolnoe-prilozhenie-php/">e2</a></li>        <li><a style='color:#000000;' href=""></a></li>        </ul>
-        </div>        <div class="col l3 s12">
-              <h5 style='color:#000000;'>col2</h5>
-              <ul>        <li><a style='color:#000000;' href="#">e3</a></li>        <li><a style='color:#000000;' href=""></a></li>        </ul>
-        </div>        </div>
+             <!-------------Блок "Navbar"-------------------------->
+     <nav style="padding-left:20%;padding-right:20%;background:#ffffff;">
+     <div class="nav-wrapper">
+         <a href="mini.html" class="brand-logo">Logotip</a>
+         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+         <ul class="right hide-on-med-and-down">        <li><a style="color:#000000;" href="https://materializecss.com/navbar.html">Menu</a></li>        <li><a style="color:#000000;" href="#slid">About Us</a></li>        </ul>
         </div>
-        <div class="footer-copyright">
-          <div class="container">
-          Made by <a style='color:#000000;' class="text-lighten-3">Logot</a>
-          </div>
-          </div>
-        </footer>
-    <!------------- Кoнец блокa 'Footer'-------------------->
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">        <li><a style="color:#000000;" href="https://materializecss.com/navbar.html">Menu</a></li>        <li><a style="color:#000000;" href="#slid">About Us</a></li>        </ul>
+    <!-------------Кoнец блокa "Navbar"-------------------->
+     <!-------------Блок "Texts"-------------------------->
+     <div id="main" style="text-align:center;margin-left:20px;margin-right:20px;">    <p  style='background:#ffffff;color:#000000;padding:20px;'>
+       2
+    </p>    <p  style='background:#ffffff;color:#000000;padding:20px;'>
+       2
+    </p>    <p  style='background:#ffffff;color:#000000;padding:20px;'>
+       2
+    </p>    <p  style='background:#ffffff;color:#000000;padding:20px;'>
+       2
+    </p>    <p  style='background:#ffffff;color:#000000;padding:20px;'>
+       2
+    </p>    <p  style='background:#ffffff;color:#000000;padding:20px;'>
+       3
+    </p>    </div>
+    <!-------------Кoнец блокa "Texts"-------------------->
+     <!-------------Блок "Slider"-------------------------->
+     <div id='slid' class="carousel">        <a class='carousel-item' style='width:300px;'><img class='slider_images' src='../landing/images/slider/slider-element1.png'></a>        <a class='carousel-item' style='width:300px;'><img class='slider_images' src='../landing/images/slider/slider-element2.png'></a>    </div>
+    <script src="./carousel.js"></script>
+    <!-------------Кoнец блокa "Slider"-------------------->
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="./materialize.js"></script>
