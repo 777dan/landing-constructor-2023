@@ -107,13 +107,11 @@ class Model
         <title>{$this->name}</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <link rel="stylesheet" href="style.css">
     </head>
     <body style='background:{$_POST['color']};'>
         {$content}
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="./materialize.js"></script>
-    <script src="./navbar.js"></script>
     </body>
 </html>
 EOD;

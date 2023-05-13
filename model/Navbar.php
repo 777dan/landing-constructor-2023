@@ -17,7 +17,7 @@ class Navbar extends Block
      <!-------------Блок "Navbar"-------------------------->
      <nav style="padding-left:20%;padding-right:20%;background:{$this->background};">
      <div class="nav-wrapper">
-         <a href="mini.html" class="brand-logo">{$this->logo_name}</a>
+         <a href="index.html" class="brand-logo">{$this->logo_name}</a>
          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
          <ul class="right hide-on-med-and-down">
 EOD;
@@ -38,6 +38,7 @@ EOD;
     {
         $str = <<<EOD
         </ul>
+        <script src="./navbar.js"></script>
     <!-------------Кoнец блокa "Navbar"-------------------->\n
 EOD;
         return $str;

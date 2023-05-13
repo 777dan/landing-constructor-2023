@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Landing-page constructor</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body style='background:#ffffff;'>
+    <!-------------Блок "Navbar"-------------------------->
+    <nav style="padding-left:20%;padding-right:20%;background:#e27474;">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">Logotip</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a style="color:#000000;" href="https://materializecss.com/navbar.html">Menu</a></li>
+                <li><a style="color:#000000;" href="#hello">About Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a style="color:#000000;" href="https://materializecss.com/navbar.html">Menu</a></li>
+        <li><a style="color:#000000;" href="#hello">About Us</a></li>
+    </ul>
+    
+    <!-------------Кoнец блокa "Navbar"-------------------->
+    <!-------------Блок "Header"-------------------------->
+    <style>
+        .header {
+            position: relative;
+        }
+
+        .parallax-container {
+            height: 400px;
+            /* высота контейнера с параллакс-изображением */
+            position: relative;
+        }
+
+        .header>h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            z-index: 1;
+        }
+    </style>
+    <div class='header'>
+        <div class="parallax-container">
+            <div class="parallax"><img src="./images/b_image/b_image.png"></div>
+        </div>
+        <script src="parallax.js"></script>
+        <h1 class="aligned-header" style="margin:0;color:#ffffff;">header</h1>
+    </div>
+    <!------------- Кoнец блокa "Header"-------------------->
+    <!-------------Блок "CTA"-------------------------->
+    <a class="btn"
+        style='margin-left: auto;margin-right: auto;display:block;margin-top:20px;margin-bottom:20px;background:#ce5f5f;color:#f5d6d6;width:300px;'
+        href="https://forms.gle/hRRauA7JNr5nXcRA9">Click!</a>
+    <!-------------Кoнец блокa "CTA"-------------------->
+    <!-------------Блок "Texts"-------------------------->
+    <div id="main" style="text-align:center;margin-left:20px;margin-right:20px;">
+        <h3 id='company' style='background:#ffffff;color:#000000;padding:20px;'>
+            Our company
+        </h3>
+        <p style='background:#ffffff;color:#000000;padding:20px;'>
+            lorem ipsum
+        </p>
+    </div>
+    <!-------------Кoнец блокa "Texts"-------------------->
+    <!-------------Блок "Links"-------------------------->
+    <div style="margin-left:20px;margin-right:20px;text-align:center;"> <a class="btn"
+            style="color:#000000;background:#ffffff;"
+            href="https://classroom.google.com/u/2/c/NTI3MTY1NjM5NzAw">twitter</a> </div>
+    <!-------------Кoнец блокa "Links"-------------------->
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="./materialize.js"></script>
+    <!-- <script src="./navbar.js"></script> -->
+</body>
+
+</html>

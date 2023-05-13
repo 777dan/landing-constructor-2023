@@ -14,7 +14,7 @@ setcookie("numberOftexts");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Landing-page constructor</title>
@@ -182,13 +182,13 @@ setcookie("numberOftexts");
                 <div class="divider light-green darken-1"></div>
                 <div id="result">
                     <h3>Результат</h3>
-                    <a href='landing/mini.html' class="design btn waves-effect waves-light light-green lighten-2 black-text" target="_blank">Посмотреть результат в новом окне</a>
+                    <a href='landing/index.html' class="design btn waves-effect waves-light light-green lighten-2 black-text" target="_blank">Посмотреть результат в новом окне</a>
                     <a href="./landing.zip" class="design btn waves-effect waves-light light-green lighten-2 black-text" download>Скачать zip-архив файла</a>
                     <span class="reload design btn waves-effect waves-light light-green lighten-2 black-text">Обновить показ сайта в мини-окне</span>
                 </div>
             </div>
             <div class="col s12 center">
-                <iframe id="showPage" src="landing/mini.html"></iframe>
+                <iframe id="showPage" src="landing/index.html"></iframe>
                 <script>
                     document.querySelector('.reload').addEventListener('click', event => {
                         document.getElementById('showPage').contentWindow.location.reload(true);

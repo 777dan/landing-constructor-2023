@@ -6,7 +6,7 @@ if (file_exists($zipDir)) {
 
 //потенциальные пути к файлам landing page
 $mainDir = "../landing/";
-$main_file = $mainDir . "mini.html";
+$main_file = $mainDir . "index.html";
 $parallax_file = $mainDir . "parallax.js";
 $imagesDir = $mainDir . "images/";
 $b_imageDir = $imagesDir . 'b_image/b_image.png';
@@ -20,7 +20,7 @@ $zip->open($arch, ZIPARCHIVE::CREATE);
 
 //проверка и архивация главного html-файла
 if (file_exists($main_file)) {
-    $zip->addFile($main_file, "landing/mini.html");
+    $zip->addFile($main_file, "landing/index.html");
 }
 
 //проверка и архивация главного parallax-файла

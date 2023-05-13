@@ -29,14 +29,14 @@ class Controller
         }
         /* создание блоков */
         if (isset($_COOKIE['numberOfnavElems'])) {
-            $navbarJS = fopen($navbarJSpath, "w");
-            $nabarJScontent = "(function ($) {
-                $(function () {
-                    $('.sidenav').sidenav();
-                });
-            })(jQuery);";
-            fwrite($navbarJS, $nabarJScontent);
-            fclose($navbarJS);
+            // $navbarJS = fopen($navbarJSpath, "w");
+            // $nabarJScontent = "(function ($) {
+            //     $(function () {
+            //         $('.sidenav').sidenav();
+            //     });
+            // })(jQuery);";
+            // fwrite($navbarJS, $nabarJScontent);
+            // fclose($navbarJS);
             for ($i = 0; $i < $_COOKIE['numberOfnavElems']; $i++) {
                 $navbar[] = new Navbar($_POST["logo_name"], $_POST["navElemName" . $i + 1], $_POST["navElemHref" . ($i + 1)], $_POST["navElemTextColor" . ($i + 1)], $_POST["navbar_color"]);
             }
@@ -223,7 +223,7 @@ class Controller
         }
 
         $str_land = $model->generate();
-        $path = "{$this->dir}/mini.html";
+        $path = "{$this->dir}/index.html";
         $f = fopen($path, "w+");
         fwrite($f, $str_land);
         fclose($f);
@@ -239,5 +239,5 @@ $controller->action();
 include "./create_archive.php";
 ?>
 <div class="row center">
-    <iframe width="800" height="400" src="landing/mini.html"></iframe>
+    <iframe width="800" height="400" src="landing/index.html"></iframe>
 </div>
